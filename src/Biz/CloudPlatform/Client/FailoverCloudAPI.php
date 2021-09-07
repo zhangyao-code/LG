@@ -25,6 +25,7 @@ class FailoverCloudAPI extends AbstractCloudAPI
 
     protected function _request($method, $uri, $params, $headers)
     {
+        return [];
         try {
             $result = parent::_request($method, $uri, $params, $headers);
 
@@ -159,9 +160,9 @@ class FailoverCloudAPI extends AbstractCloudAPI
 
         $this->apiType = $type;
 
-        if ('leaf' == $type) {
-            $this->apiUrl = $this->servers['current_leaf'];
-        }
+//        if ($type == 'leaf') {
+//            $this->apiUrl = $this->servers['current_leaf'];
+//        }
     }
 
     public function setApiServerConfigPath($path)
@@ -190,6 +191,7 @@ class FailoverCloudAPI extends AbstractCloudAPI
 
     public function getServerList($nextRefreshTime = 0)
     {
+        return [];
         $prevApiUrl = $this->apiUrl;
         $this->setApiUrl($this->rootApiUrl);
 

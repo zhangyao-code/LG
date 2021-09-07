@@ -48,6 +48,8 @@ class AdminRequestInterceptListener
 
     protected function isAdminV2Setting()
     {
+        $this->getSettingService()->set('backstage', array('is_v2' => 1));
+
         $adminVersionSetting = $this->getSettingService()->get('backstage', array('is_v2' => 0));
 
         return !empty($adminVersionSetting['is_v2']);

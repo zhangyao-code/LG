@@ -22,16 +22,7 @@ class DefaultController extends BaseController
 {
     public function indexAction(Request $request)
     {
-        $user = $this->getCurrentUser();
-
-        if (!empty($user['id'])) {
-            $this->getBatchNotificationService()->checkoutBatchNotification($user['id']);
-        }
-
-        $custom = $this->isCustom();
-        $friendlyLinks = $this->getNavigationService()->getOpenedNavigationsTreeByType('friendlyLink');
-
-        return $this->render('default/index.html.twig', array('friendlyLinks' => $friendlyLinks, 'custom' => $custom));
+        return $this->render('homepage/index.html.twig', array());
     }
 
     public function appDownloadAction()

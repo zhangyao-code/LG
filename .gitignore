@@ -2,13 +2,9 @@
 /app/logs
 /app/data
 /app/run
-/app/config/plugin_installed.php
-/app/config/plugin.php
-/app/config/parameters.yml
 /app/config/parameters_test.yml
 /app/config/menu_blacklist.yml
 /app/config/uc_client_config.php
-/app/config/routing_plugins.yml
 /app/config/sentry.yml
 /web/themes/*
 /web/assets/libs/js-sdk/
@@ -19,7 +15,6 @@
 !/web/themes/block.json
 /web/bundles/*
 !/web/bundles/translations/
-/web/files
 /web/customize/*
 !/web/customize/.gitkeep
 /plugins/*

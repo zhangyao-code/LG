@@ -258,10 +258,9 @@ class RoleServiceImpl extends BaseService implements RoleService
         $permissions = PermissionBuilder::instance()->loadPermissionsFromAllConfig();
         $tree = Tree::buildWithArray($permissions, null, 'code', 'parent');
         //获取老后台权限menus
-        $roles = $this->getAdminRoles($tree);
         //获取新后台权限menus
         $v2Roles = $this->getAdminV2Roles($tree);
-        foreach ($roles as $key => $value) {
+        foreach ($v2Roles as $key => $value) {
             $userRole = $this->getRoleDao()->getByCode($key);
 
             if (empty($userRole)) {
@@ -277,45 +276,6 @@ class RoleServiceImpl extends BaseService implements RoleService
      *
      * @return array
      *
-     * 获取老后台权限menus
-     */
-    protected function getAdminRoles($tree)
-    {
-        $getAdminRoles = $tree->find(function ($tree) {
-            return 'admin' === $tree->data['code'];
-        });
-        $adminRoles = $getAdminRoles->column('code');
-        $getWebRoles = $tree->find(function ($tree) {
-            return 'web' === $tree->data['code'];
-        });
-        $webRoles = $getWebRoles->column('code');
-        $adminForbidParentRoles = array(
-            'admin_user_avatar',
-            'admin_user_change_password',
-            'admin_my_cloud',
-            'admin_cloud_video_setting',
-            'admin_edu_cloud_sms',
-            'admin_edu_cloud_search_setting',
-            'admin_setting_cloud_attachment',
-            'admin_setting_cloud',
-            'admin_system',
-        );
-        $adminForbidRoles = $this->getAllForbidRoles($getAdminRoles, $adminForbidParentRoles);
-        $superAdminRoles = array_merge($adminRoles, $webRoles);
-
-        return array(
-            'ROLE_USER' => array(),
-            'ROLE_TEACHER' => $webRoles,
-            'ROLE_ADMIN' => array_diff($superAdminRoles, $adminForbidRoles),
-            'ROLE_SUPER_ADMIN' => $superAdminRoles,
-        );
-    }
-
-    /**
-     * @param $tree
-     *
-     * @return array
-     *
      * 获取新后台权限menus
      */
     protected function getAdminV2Roles($tree)
@@ -323,12 +283,8 @@ class RoleServiceImpl extends BaseService implements RoleService
         $getAdminV2Roles = $tree->find(function ($tree) {
             return 'admin_v2' === $tree->data['code'];
         });
-        $adminV2Roles = $getAdminV2Roles->column('code');
 
-        $getWebRoles = $tree->find(function ($tree) {
-            return 'web' === $tree->data['code'];
-        });
-        $webRoles = $getWebRoles->column('code');
+        $adminV2Roles = $getAdminV2Roles->column('code');
 
         $adminV2ForbidParentRoles = array(
             'admin_v2_user_avatar',
@@ -343,11 +299,11 @@ class RoleServiceImpl extends BaseService implements RoleService
         );
 
         $adminV2ForbidRoles = $this->getAllForbidRoles($getAdminV2Roles, $adminV2ForbidParentRoles);
-        $superAdminV2Roles = array_merge($adminV2Roles, $webRoles);
+        $superAdminV2Roles = array_merge($adminV2Roles, []);
 
         return array(
             'ROLE_USER' => array(),
-            'ROLE_TEACHER' => $webRoles,
+            'ROLE_TEACHER' => [],
             'ROLE_ADMIN' => array_diff($superAdminV2Roles, $adminV2ForbidRoles),
             'ROLE_SUPER_ADMIN' => $superAdminV2Roles,
         );

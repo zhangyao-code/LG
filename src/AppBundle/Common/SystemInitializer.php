@@ -460,23 +460,6 @@ EOD;
 
     protected function _initPages()
     {
-        $this->getContentService()->createContent(array(
-            'title' => '关于我们',
-            'type' => 'page',
-            'alias' => 'aboutus',
-            'body' => '',
-            'template' => 'default',
-            'status' => 'published',
-        ));
-
-        $this->getContentService()->createContent(array(
-            'title' => '常见问题',
-            'type' => 'page',
-            'alias' => 'questions',
-            'body' => '',
-            'template' => 'default',
-            'status' => 'published',
-        ));
     }
 
     protected function _initCoin()
