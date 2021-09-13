@@ -1,0 +1,30 @@
+{% set solute = setting('homepage_trace', []) %}
+<div class="part trace">
+  <h3 class="title">{{ solute.title }}</h3>
+  <p class="desc">{{ solute.tip }}</p>
+  <div class="trace-info">
+    <ul class="info-left">
+      {% for index in 1..5 %}
+        {% if solute['li_'~index]|default('') %}
+          <li>{{ solute['li_'~index] }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <a class="info-right" href="/traceback.html">
+      <img src="{{ solute.traceImage }}" />
+    </a>
+  </div>
+  <div class="trace-step">
+    {% for index in 1..7 %}
+      <div class="step-item {% if index ==7 %}step-last{% endif %} img-group">
+        <div class="item-img">
+          <img class="item-bg"
+               src="/images/1_17.png"
+          />
+          <img class="item-icon" src="{{ asset(solute['traceIcon'~index]|default('images/1_17_1.png')) }}" />
+        </div>
+        <p class="item-text" >{{ solute['traceIconTitle'~index]|default('icon标题') }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>

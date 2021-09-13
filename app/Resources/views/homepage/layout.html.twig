@@ -44,90 +44,19 @@
     </div>
     <div class="head-nav clearfix">
       <ul class="navul clearfix">
+        {% set navigations = data('NavigationsTree', {type: 'homepage'}) %}
+        {% for navigation in navigations %}
         <li>
           <div class="navs clearfix">
-            <a class="ones" href="/">首页</a>
-          </div>
-        </li>
-        <li>
-          <div class="navs clearfix">
-            <a class="ones" href="/home/companyprofile">关于微育</a>
+            <a class="ones" href="{{ navigation.url }}">{{navigation.name}}</a>
           </div>
           <div class="select">
-            <a href="/home/companyprofile">公司简介</a>
-            <a href="/home/companyculture">企业文化</a>
-
-            <a href="/home/honor">荣誉资质</a>
-
-            <a href="/home/join">加入微育</a>
+            {% for item in navigation.children|default() %}
+            <a href="{{ item.url }}">{{item.name}}</a>
+            {% endfor %}
           </div>
         </li>
-        <li>
-          <div class="navs clearfix">
-            <a class="ones" href="javascript:void(0);" target="_self">
-              产品中心
-            </a>
-
-          </div>
-          <div class="select soft">
-            <div class="main">
-              <a href="javascript:void(0);" class="dot"></a><div class="threelist">
-                <div class="tablist">
-                  <ul class="hd"><li><span>软件+</span></li></ul><div class="bd">
-                    <ul class="t1">
-                      <li><span>人力资源解决方案</span></li>
-                      <li><a title="人力资源软件" href="javascript:">人力资源软件</a></li>
-                      <li><a title="人才招聘系统" href="javascript:">人才招聘系统</a></li>
-                      <li><a title="岗位评聘系统" href="javascript:">岗位评聘系统</a></li>
-                      <li><a title="绩效考核系统" href="javascript:">绩效考核系统</a></li>
-                      <li><a title="排班考勤系统" href="/solution/kaoqin">排班考勤系统</a></li>
-                    </ul>
-                    <ul class="t2">
-                      <li><span>二维码追溯解决方案</span></li>
-
-                      <li><a title="包装赋码系统" href="/solution/coding">包装赋码系统</a></li>
-                      <li><a title="WMS仓管系统" href="/solution/wms">WMS仓管系统</a></li>
-                      <li><a title="渠道管控系统" href="/solution/antifake">渠道管控系统</a></li>
-                      <li><a title="消费者运营系统" href="/solution/consumers">消费者运营系统</a></li>
-
-                    </ul>
-
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </li>
-
-
-
-
-
-        <li>
-          <div class="navs clearfix">
-            <a class="ones" href="/service/index" target="_self">
-              服务中心
-            </a>
-
-          </div>
-        </li>
-
-        <li>
-          <div class="navs clearfix">
-            <a href="/dynamic/index/df0e4aa2ec624eb8b807ba9249056a27" class="ones">媒体中心</a>
-          </div>
-          <div class="select">
-            <a href="/dynamic/index/df0e4aa2ec624eb8b807ba9249056a27">公司新闻</a>
-            <a href="/dynamic/index/7994ac7e4e3940df8fd5b5ee2dc039ca">行业新闻</a>
-
-          </div>
-        </li>
-        <li>
-          <div class="navs clearfix">
-            <a class="ones" href="/home/contactus">联系我们</a>
-          </div>
-        </li>
+        {% endfor %}
       </ul>
     </div>
 

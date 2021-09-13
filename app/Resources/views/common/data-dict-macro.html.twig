@@ -50,7 +50,7 @@
 
 {% macro logLevel(level) %}
     {% if level == 'info' %}
-        <span class="color-success">{{ 'common.logLevel.info'|trans }}</span>
+        <span>{{ 'common.logLevel.info'|trans }}</span>
     {% elseif level == 'warning' %}
         <span class="text-warning">{{ 'common.logLevel.warning'|trans }}</span>
     {% elseif level == 'error' %}
@@ -88,24 +88,23 @@
     {% endif %}
 {% endmacro %}
 
-{% macro  video_quality(option) %}
+{% macro video_quality(option) %}
      {% if option == 'low' %}
        {{'common.video_quality.low'|trans}} <span class="color-gray">({{'common.video_quality.low.tips'|trans}})</span>
     {% elseif option == 'normal' %}
       {{'common.video_quality.normal'|trans}} <span class="color-gray">({{'common.video_quality.normal.tips'|trans}})</span>
     {% elseif option == 'high' %}
       {{'common.video_quality.high'|trans}} <span class="color-gray">({{'common.video_quality.high.tips'|trans}})</span>
-    {% elseif option == 'super' %}
-      {{'common.video_quality.super'|trans}} <span class="color-gray">({{'common.video_quality.super.tips'|trans}})</span>
     {% endif %}
 {% endmacro %}
 
-{% macro classroomStatus(status) %}
-  {% if status == 'draft' %}
-    <span class="color-gray">{{ 'common.classroomStatus.draft'|trans }}</span>
-  {% elseif status == 'published' %}
-    <span class="color-success">{{ 'common.classroomStatus.published'|trans }}</span>
-  {% elseif status == 'closed' %}
-    <span class="color-danger">{{ 'common.classroomStatus.closed'|trans }}</span>
-  {% endif %}
+
+{% macro templateStatus(status) %}
+    {% if status == 'closed' %}
+        <span class="color-danger">{{ 'common.courseStatus.closed'|trans }}</span>
+    {% elseif status == 'unpublished' %}
+        <span class="color-gray">{{ 'common.courseStatus.draft'|trans }}</span>
+    {% elseif status == 'published' %}
+        <span class="color-success">{{ 'common.courseStatus.published'|trans }}</span>
+    {% endif %}
 {% endmacro %}

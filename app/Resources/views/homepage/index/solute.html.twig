@@ -1,0 +1,65 @@
+<div class="part soluteList">
+  {% set solute = setting('homepage_solute', []) %}
+  <h3 class="title">{{ solute.soluteListTitle|default('全球领先的二维码追溯解决方案') }}</h3>
+  {% for index,value in solute %}
+
+    {% if not (index == 'soluteListTitle') %}
+      <div class="li {% if index == 'soluteList1' %}active{% endif %} ">
+        <div class="block">
+          <div class="head">
+            <div class="img"><img src="{{ asset(solute[index].icon2) }}" alt=""></div>
+            <h4>{{value.title}}</h4>
+            <p class="english">{{ value.titleEn }}</p>
+          </div>
+
+          <ul class="desc">
+            <li>{{ value.md_1 }}</li>
+            <li>{{ value.md_2 }}</li>
+            <li>{{ value.md_3 }}</li>
+            <li>{{ value.md_4 }}</li>
+            <li>{{ value.md_5 }}</li>
+          </ul>
+        </div>
+
+        <div class="hover">
+
+          <div class="head">
+            <div class="img"><img src="{{ asset(solute[index].icon1) }}" alt=""></div>
+            <h4>{{value.title}}</h4>
+            <p class="english">{{ value.titleEn }}</p>
+          </div>
+
+          <div class="detail">
+
+            <div class="con">
+              <h4>{{ value.md_1 }}</h4>
+              <p>{{ value.mds_1 }}</p>
+              <a target="_blank"
+                 href="http://wpa.qq.com/msgrd?v=3&uin=1041666498&site=qq&menu=yes">咨询方案</a>
+            </div>
+
+            <ul>
+              <li>
+                <h4>{{ value.md_2 }}</h4>
+                <p>{{ value.mds_2 }}</p>
+              </li>
+              <li>
+                <h4>{{ value.md_3 }}</h4>
+                <p>{{ value.mds_3 }}</p>
+              </li>
+              <li>
+                <h4>{{ value.md_4 }}</h4>
+                <p>{{ value.mds_4 }}</p>
+              </li>
+              <li>
+                <h4>{{ value.md_5 }}</h4>
+                <p>{{ value.mds_5 }}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+
+</div>

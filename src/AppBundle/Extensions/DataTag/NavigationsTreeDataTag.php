@@ -13,7 +13,9 @@ class NavigationsTreeDataTag extends BaseDataTag implements DataTag
      */
     public function getData(array $arguments)
     {
-        return $this->getNavigationService()->getOpenedNavigationsTreeByType('top');
+        $type = empty($arguments['type']) ? 'top' : $arguments['type'];
+
+        return $this->getNavigationService()->getOpenedNavigationsTreeByType($type);
     }
 
     protected function getNavigationService()

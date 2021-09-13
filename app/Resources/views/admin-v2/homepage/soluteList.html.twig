@@ -1,0 +1,128 @@
+<style>
+  .li .list-title {
+    background-color: #3963ac;font-size: 18px;text-align: center
+  }
+  .li .list-titleEn {
+    background-color: #3963ac !important; font-size: 14px;text-align: center
+  }
+  .li .md1{
+    font-size: 18px;text-align: left; padding: 10px 0px
+  }
+  .li .mds1 {
+    height:40px; margin-bottom: 10px;font-size: 14px;text-align: left;color: #999
+  }
+  .li .mdm{
+    font-size: 12px;text-align: left; padding: 10px 5px 0px 0px
+  }
+  .li .list-content {
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    width: 350px;
+  }
+  .li .item {
+    width: 50%;
+    float: left;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  .li .mdsm {
+    color: #999;
+    font-size: 12px;
+    min-height: 40px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    border: none;
+    width: 100%;
+  }
+  .li .img{
+    text-align: center;
+    max-width: 100px;
+    max-height: 68px;
+  }
+  .li .ba-head {
+    padding: 30px;
+    text-align: center;
+  }
+  .li .ba-head .img {
+    width: 100px;
+    margin: 20px auto;
+    overflow: hidden;
+  }
+</style>
+<div class="li active">
+
+
+  <div class="hover">
+    <div class="head">
+      <div class="img img-group" ><a id="{{ index }}-icon1" href="javascript:;" class="site-logo-container js-swiper"
+                           data-upload-token="{{ upload_token('system', 'image') }}"
+                           data-goto-url="{{ path('admin_v2_homepage_swiper_upload') }}"> <img src="{{  asset(solute[index].icon1|default('/images/bcgy0.png')) }}"></a>
+        <input class="hidden js-swiper-value" name="{{ index }}[icon1]" value="{{  asset(solute[index].icon1|default('/images/bcgy0.png')) }}">
+      </div>
+      <div>
+        <input name="{{ index }}[title]" class="list-title" value="{{ solute[index].title }}">
+      </div>
+      <div>
+        <input class="english list-titleEn" name="{{ index }}[titleEn]" value="{{ solute[index].titleEn|default('Material supply') }}">
+      </div>
+    </div>
+    <div class="ba-head" style="background-color: #ededed">
+      <div class="img img-group" ><a id="{{ index }}-icon2" href="javascript:;" class="site-logo-container js-swiper"
+                           data-upload-token="{{ upload_token('system', 'image') }}"
+                           data-goto-url="{{ path('admin_v2_homepage_swiper_upload') }}"> <img src="{{  asset(solute[index].icon2|default('/images/bcgy0.png')) }}"></a>
+        <input class="hidden js-swiper-value" name="{{ index }}[icon2]" value="{{  asset(solute[index].icon2|default('/images/bcgy0.png')) }}">
+      </div>
+    </div>
+    <div class="detail">
+
+      <div class="con">
+        <div>
+          <input name="{{ index }}[md_1]" class="md1" value="{{ solute[index].md_1|default('子模块1标题') }}">
+        </div>
+        <div>
+          <input class="english mds1" name="{{ index }}[mds_1]" value="{{ solute[index].mds_1|default('子模块1内容') }}">
+        </div>
+        <a href="javascript:;">咨询方案</a>
+      </div>
+
+      <div class="list-content">
+        <div class="item">
+          <div>
+            <input name="{{ index }}[md_2]" class="mdm" value="专业赋码">
+          </div>
+          <div>
+            <textarea class="english mdsm" name="{{ index }}[mds_2]">二维码赋码检测一体化，确保每一个二维码100%可读</textarea>
+          </div>
+        </div>
+        <div class="item">
+          <div>
+            <input name="{{ index }}[md_3]" class="mdm" value="{{ solute[index].md_3|default('子模块2标题') }}">
+          </div>
+          <div>
+            <textarea class="english mdsm" name="{{ index }}[mds_3]">{{ solute[index].mds_3|default('子模块2标题') }}</textarea>
+          </div>
+        </div>
+        <div class="item">
+          <div>
+            <input name="{{ index }}[md_4]" class="mdm" value="{{ solute[index].md_4|default('子模块3标题') }}">
+          </div>
+          <div>
+            <textarea class="english mdsm" name="{{ index }}[mds_4]">{{ solute[index].mds_4|default('子模块3标题') }}</textarea>
+          </div>
+        </div>
+        <div class="item">
+          <div>
+            <input name="{{ index }}[md_5]" class="mdm" value="{{ solute[index].md_5|default('子模块4标题') }}">
+          </div>
+          <div>
+            <textarea class="english mdsm" name="{{ index }}[mds_5]">{{ solute[index].mds_5|default('子模块4标题') }}</textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

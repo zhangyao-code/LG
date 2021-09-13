@@ -35,7 +35,7 @@
 
         {# 数据概览 #}
         <div class="admin-v2-section cd-pb24">
-          <div class="admin-v2-section__header cd-mb16">{{ 'admin_v2.homepage.data_overview'|trans }}<a class="admin-v2-section__more" href="{{ path('admin_v2_data_statistics_overview') }}">{{ 'admin_v2.homepage.more_btn'|trans }}<i class="es-icon es-icon-chevronright"></i></a></div>
+{#          <div class="admin-v2-section__header cd-mb16">{{ 'admin_v2.homepage.data_overview'|trans }}<a class="admin-v2-section__more" href="{{ path('admin_v2_data_statistics_overview') }}">{{ 'admin_v2.homepage.more_btn'|trans }}<i class="es-icon es-icon-chevronright"></i></a></div>#}
           <div class="admin-v2-section__body admin-data js-data-overview" data-url="{{ path('admin_v2_homepage_daily_statistics') }}">
             <div class="row text-center" style="line-height: 56px;">
               {{ 'admin_v2.homepage.loading_data_tips'|trans }}
@@ -138,7 +138,7 @@
       </div>
     </div>
 
-    <div  id="cloud-ad" class="admin-cloud-ad modal fade text-center" aria-hidden="true" data-backdrop="static"  tabindex="-1" role="dialog" data-url ="{{ path('admin_v2_cloud_ad') }}">
+{#    <div  id="cloud-ad" class="admin-cloud-ad modal fade text-center" aria-hidden="true" data-backdrop="static"  tabindex="-1" role="dialog" data-url ="{{ path('admin_v2_cloud_ad') }}">#}
       <div class="modal-dialog">
           <a href="" target="_blank">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>

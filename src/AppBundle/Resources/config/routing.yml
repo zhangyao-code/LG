@@ -27,14 +27,6 @@ switch_language:
     path: /switch/language
     defaults: { _controller: AppBundle:Default:translate }
 
-homepage_category:
-    path: /course/search
-    defaults: { _controller: AppBundle:Default:coursesCategory }
-
-live_jump:
-    path: /live/jump
-    defaults: { _controller: AppBundle:Default:jump }
-
 login:
     path:  /login
     defaults: { _controller: AppBundle:Login:index }
@@ -118,14 +110,6 @@ user_terms:
 privacy_policy:
   path: /privacyPolicy
   defaults: { _controller: AppBundle:Register:privacyPolicy }
-
-distributor_register:
-   path:  /distributor_register
-   defaults: { _controller: AppBundle:Distributor:register }
-
-distributor_product:
-   path:  /distributor_product
-   defaults: { _controller: AppBundle:Distributor:product }
 
 register:
     path:  /register
@@ -317,23 +301,6 @@ editor_download:
     defaults: { _controller: AppBundle:Editor:download }
     methods: [POST]
 
-liveroom_ticket:
-    path:  /liveroom/{roomId}/ticket
-    defaults: { _controller: AppBundle:Liveroom:ticket }
-
-live_auth:
-   path:  /live/auth
-   defaults: { _controller: AppBundle:LiveAuth:index }
-
-order_detail:
-   path:  /order/{id}/detail
-   defaults: { _controller: AppBundle:Order/Order:detail }
-
-order_cancel_refund:
-    path:  /order/{orderId}/cancel_refund
-    defaults: { _controller: AppBundle:Order/OrderRefund:cancelRefund }
-    methods: [POST]
-
 media_play:
     path:  /media/{mediaId}/play
     defaults: { _controller: AppBundle:Media/Index:play }
@@ -363,43 +330,6 @@ media_subtitle_delete:
 media_subtitle_manage_dialog:
     path:  /media/subtitles/manage/dialog
     defaults: { _controller: AppBundle:Subtitle:manageDialog }
-
-announcement_list:
-    path: /announcement/{targetType}/{targetId}/list
-    defaults: { _controller: AppBundle:Announcement:list }
-
-announcement_show_all:
-    path:  /announcement/{targetType}/{targetId}/all
-    defaults: { _controller: AppBundle:Announcement:showAll }
-
-announcement_add:
-    path:  /announcement/manage/{targetType}/{targetId}/create
-    defaults: { _controller: AppBundle:Announcement:create }
-
-announcement_show:
-    path:  /announcement/{id}/{targetId}/show
-    defaults: { _controller: AppBundle:Announcement:show }
-
-announcement_manage:
-    path:  /announcement/{targetType}/{targetId}/manage
-    defaults: { _controller: AppBundle:Announcement:manage }
-
-announcement_update:
-    path:  /announcement/{id}/{targetType}/{targetId}/update
-    defaults: { _controller: AppBundle:Announcement:update }
-
-announcement_delete:
-    path:  /announcement/{id}/{targetType}/{targetId}/delete
-    defaults: { _controller: AppBundle:Announcement:delete }
-    methods: [POST]
-
-search:
-    path:  /search
-    defaults: { _controller: AppBundle:Search:index }
-
-cloud_search:
-    path:  /cloud/search
-    defaults: { _controller: AppBundle:Search:cloudSearch }
 
 settings:
     path:  /settings

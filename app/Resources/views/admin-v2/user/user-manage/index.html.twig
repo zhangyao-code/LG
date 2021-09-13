@@ -26,10 +26,6 @@
     </div>
 
     <div class="form-group">
-      {% include 'org/org-tree-select.html.twig' with {orgCode: app.request.get('orgCode'), modal: 'list'} %}
-    </div>
-
-    <div class="form-group">
 
       <select class="form-control" name="roles">
         {{ select_options(dict('userRole')|array_merge(allRoles), app.request.query.get('roles'), 'admin.user.manage.form.role_option.default'|trans) }}
@@ -70,7 +66,6 @@
           <th><input type="checkbox"  data-role="batch-select"></th>
         {% endif %}
       <th>{{ 'user.fields.username_label'|trans }}</th>
-        {% include 'org/parts/table-thead-tr.html.twig' %}
       <th>{{ 'admin.user.manage.fields.mobile_label'|trans }}</th>
       <th>Email</th>
       <th>{{ 'admin.user.fields.register_date_label'|trans }}</th>
@@ -88,7 +83,6 @@
     </tbody>
   </table>
 
-  {% include 'org/batch-update-org-btn.html.twig' with {module:'user', formId:'user-search-form'} %}
 
   {{ admin_macro.paginator(paginator) }}
 {% endblock %}

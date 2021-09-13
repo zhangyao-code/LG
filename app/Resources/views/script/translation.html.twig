@@ -1,8 +1,10 @@
 <script src="{{ asset('bundles/translations/translator.min.js') }}"></script>
 
-{% set locales = app.request.session ? app.request.session.get('_locale',app.request.locale) : app.request.locale %}
+{% set locales = app.request.session.get('_locale',app.request.locale)|default() %}
 {% if app.debug %}
   <script src="{{ path('jstranslation_js', {'domain': 'js'}) }}?locales={{ locales }}"></script>
+  <script src="{{ path('jstranslation_js', {'domain': 'menu'}) }}?locales={{ locales }}"></script>
+  <script src="{{ path('jstranslation_js', {'domain': 'messages'}) }}?locales={{ locales }}"></script>
 {% else %}
   <script src="{{ asset('bundles/translations/' ~ locales ~ '.js') }}"></script>
 {% endif %}

@@ -47,6 +47,13 @@
   {% set message = setting('default.courseShareContent')|replace({'{{':'《%','}}':'%》'})|default('share.task_message')|trans({'%course%': task.title}) %}
   {% set picture = '' %}
   {% set id = task.id%}
+{% elseif type == 'offline_course_template' %}
+  {% set url = url('offline_course_show', {id: offlineCourse.id}) %}
+  {% set title = offlineCourse.title %}
+  {% set summary = offlineCourse.summary|default('')|plain_text(50) %}
+  {% set message = setting('default.courseShareContent')|replace({'{{':'《%','}}':'%》'})|default('share.course_set_message')|trans({'%course%':offlineCourse.title}) %}
+  {% set picture = fileurl(offlineCourse.cover.large|default(null), 'course.png')%}
+  {% set id = offlineCourse.id%}
 {% endif %}
 
 <div class="dropdown-menu {% if right|default(false) %}pull-right{% endif %} js-social-share-params" data-title="{{ title }}" data-summary="{{ summary|default('') }}" data-message="{{ message }}" data-url="{{ url }}" data-picture="{{ picture|default('') }}">

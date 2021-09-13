@@ -1,0 +1,12 @@
+{% set detail = setting('homepage_detail', []) %}
+
+<div class="aboutbg" style="background:url({{ asset(detail['detailImage']|default('images/index_55.jpg')) }}) center no-repeat;">
+  <div class="contant">
+    <div class="abright">
+      <div class="abimg"><h2>创逸科技</h2></div>
+      <div class="abp">
+        {{ detail.detailContent }}
+      </div>
+    </div>
+  </div>
+</div>

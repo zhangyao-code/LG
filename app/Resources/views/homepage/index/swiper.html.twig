@@ -1,0 +1,12 @@
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    {% for swiper in setting('homepage_swiper', []) %}
+      {% if swiper|default() %}
+        <div class="swiper-slide">
+          <a href="javascript:"><img src="{{ asset(swiper) }}"></a>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="pagination"></div>
+</div>
