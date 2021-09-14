@@ -5,7 +5,7 @@ define(function(require, exports, module) {
     var Uploader = require('upload');
 
     exports.run = function() {
-        // var $form = $("#swiper-form");
+        let $form = $("#swiper-form");
         let $soluteFrom = $('#solute-form')
       let $traceForm = $('#trace-form');
         let $detailForm = $('#detail-form');
@@ -114,10 +114,10 @@ define(function(require, exports, module) {
           let parent = $event.element.parents('.img-group');
           let  url = $(".js-swiper").data("gotoUrl");
           $.post(url, response ,function(data){
-              if(parent.find('.webuploader-pick')){
-                parent.find(".webuploader-pick").html('<img src="' + data.url + '">');
-              }else{
+              if(parent.find('.site-logo-container')){
                 parent.find(".site-logo-container").html('<img src="' + data.url + '">');
+              }else{
+                parent.find(".webuploader-pick").html('<img src="' + data.url + '">');
               }
               parent.find('.js-swiper-value').val(data.path);
               parent.find(".js-swiper-delete").removeClass('hidden');

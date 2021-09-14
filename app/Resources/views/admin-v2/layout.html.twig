@@ -27,7 +27,7 @@
       - {{ menu|parent_permission.name|trans({}, 'menu') }} -
         {{ menu|parent_permission.code|parent_permission.name|trans({}, 'menu')  }}
     {% endblock %}
-    {% if not setting('copyright.owned') %} | EduSoho{% endif %}
+    {% if not setting('copyright.owned') %} | 创逸科技{% endif %}
   </title>
 
   {% if setting('site.favicon') %}
@@ -57,7 +57,7 @@
     <div class="ct-layout-container admin-layout-container">
       <div class="cd-fixed-top">
         <div class="ct-top-logo hidden-xs">
-          <a class="admin-navbar-brand" href="{{ url('admin_v2') }}">{% if not setting('copyright.owned') %}EduSoho{% endif %}{{'admin.navbar.header.console_btn'|trans}}</a>
+          <a class="admin-navbar-brand" href="{{ url('admin_v2') }}">{% if not setting('copyright.owned') %}创逸科技{% endif %}{{'admin.navbar.header.console_btn'|trans}}</a>
         </div>
         <div class="navbar-header navbar-header--mobile visible-xs">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

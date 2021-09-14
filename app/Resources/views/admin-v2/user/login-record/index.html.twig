@@ -9,8 +9,6 @@
 <div class="well well-sm">
   <form id="login-record-search-form" class="form-inline" action="" method="get" novalidate> 
     
-    {% include 'org/org-tree-select.html.twig' with {orgCode: app.request.get('orgCode'), modal: 'list'} %}
-    
     <div class="form-group controls">
       <select id="keywordType" name="keywordType" class="form-control">
         {{ select_options(dict('userKeyWordTypes'), app.request.query.get('keywordType')) }}
@@ -38,7 +36,6 @@
   <thead>
     <tr>
       <th>{{'user.fields.username_label'|trans}}</th>
-      {% include 'org/parts/table-thead-tr.html.twig' %}
       <th>{{'admin.user.fields.user_email'|trans}}</th>
       <th>{{'admin.user.login_record.fields.login_time_and_ip_label'|trans}}</th>
       <th>{{'admin.user.login_record.fields.login_address_label'|trans}}</th>

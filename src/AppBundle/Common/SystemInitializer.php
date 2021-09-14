@@ -173,12 +173,12 @@ class SystemInitializer
         $this->output->write('  初始化站点设置');
 
         $default = array(
-            'name' => 'EDUSOHO测试站',
-            'slogan' => '强大的在线教育解决方案',
-            'url' => 'http://demo.edusoho.com',
+            'name' => '创逸科技',
+            'slogan' => '强大的在线软件解决方案',
+            'url' => '',
             'logo' => '',
-            'seo_keywords' => 'edusoho, 在线教育软件, 在线在线教育解决方案',
-            'seo_description' => 'edusoho是强大的在线教育开源软件',
+            'seo_keywords' => '创逸科技, 在线软件解决方案',
+            'seo_description' => '',
             'master_email' => 'test@edusoho.com',
             'icp' => ' 浙ICP备13006852号-1',
             'analytics' => '',

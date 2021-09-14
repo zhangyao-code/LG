@@ -11,7 +11,7 @@
 {% block main %}
   <style>
     .swiper-from img{
-      width: 600px;
+      width: 622px;
       height: 220px;
     }
     .soluteList .li {
@@ -52,7 +52,7 @@
   </style>
 <form class="form-horizontal swiper-from" id="swiper-form" method="post" data-save-url="{{ path('admin_v2_homepage_swiper_manage') }}">
     <fieldset>
-      <h3 style="text-align: center">轮播图设置</h3><p style="text-align: center">(注意图片展示比例)</p>
+      <h3 style="text-align: center">轮播图设置</h3><p style="text-align: center">(图片比例1440:509)</p>
       <div class="form-group img-group">
         <div class="col-md-2 control-label">
           <label for="logo">{{'轮播图1'|trans}}</label>
@@ -150,7 +150,7 @@
 <form class="form-horizontal content" id="trace-form" method="post" data-save-url="{{ path('admin_v2_homepage_trace_manage') }}">
   <link href="/css/index.css" rel="stylesheet" />
   <h3 style="text-align: center">模块设置</h3><p style="text-align: center">(点击文案和图片即可修改,大图建议608*410，灰底建议120*120)</p>
-  <div class="part trace">
+  <div class="part trace" style="width: 100%">
     <input class="title" name="title" value="{{ trace.title|default('二维码追溯系统') }}">
     <input class="desc" name="tip" value="{{ trace.title|default('二维码追溯系统') }}">
     <div class="trace-info img-group">
@@ -170,7 +170,7 @@
     </div>
     <div class="trace-step">
       {% for index in 1..7 %}
-        <div class="step-item {% if index ==7 %}step-last{% endif %} img-group">
+        <div class="step-item {% if index ==7 %}step-last{% endif %} img-group" {% if index <7 %}style="margin-right: 40px"{% endif %}>
           <div class="item-img">
             <img class="item-bg"
                  src="/images/1_17.png"
@@ -216,12 +216,7 @@
     <div class="detail-abp" >
       <textarea class="" name="detailContent">{{ detail['detailContent']|default('输入公司简介！') }}</textarea>
     </div>
-    <div class="row form-group mtl">
-      <div class="controls col-md-offset-2 col-md-8">
-        <button type="button" class="btn btn-primary" id="save-detail">{{'保存'|trans}}</button>
-      </div>
-    </div>
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('site') }}">
   </form>
-
+  <button style="margin-left: 16.66666667%;margin-top: 30px" type="button" class="btn btn-primary" id="save-detail">{{'保存'|trans}}</button>
 {% endblock %}

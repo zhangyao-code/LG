@@ -3,7 +3,6 @@
   <td>
     <strong>{{ admin_macro.user_link(user) }}</strong>
   </td>
-  {% include 'org/parts/table-body-td.html.twig' with {orgCode: user.orgCode}%}
   <td>
     {% if not is_system_generated_email(user.email) %}
       {{ user.email }}
