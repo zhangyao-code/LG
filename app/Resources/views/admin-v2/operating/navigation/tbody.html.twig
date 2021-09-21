@@ -11,7 +11,7 @@
         {% if navigation.isOpen == 1 %}{{'admin.setting.navigation.status.open'|trans}}{% else %}{{'admin.setting.navigation.status.closed'|trans}}{% endif %}
   		</td>
 		  <td>
-        {% if navigation.type in ['top', 'homepage'] and navigation.parentId == 0 %}
+        {% if navigation.type in ['foot', 'top', 'homepage'] and navigation.parentId == 0 %}
 	        <button class="btn btn-sm btn-default edit-btn" data-url="{{ path('admin_v2_navigation_create', {type: navigation.type, parentId: navigation.id}) }}" data-toggle="modal" data-target="#modal">{{'admin.setting.navigation.add_child_menu_btn'|trans}}</button>
         {% endif %}
           <button class="btn btn-sm btn-default edit-btn" data-url="{{ path('admin_v2_navigation_update', {id:navigation.id}) }}" data-toggle="modal" data-target="#modal">{{'admin.setting.navigation.edit_btn'|trans}}</button>

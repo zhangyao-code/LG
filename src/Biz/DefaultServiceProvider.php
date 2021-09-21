@@ -53,32 +53,8 @@ class DefaultServiceProvider implements ServiceProviderInterface
             return new HTMLHelper($biz);
         };
 
-        $biz['testpaper_builder.testpaper'] = function ($biz) {
-            return new TestpaperBuilder($biz);
-        };
-
-        $biz['testpaper_builder.random_testpaper'] = function ($biz) {
-            return new RandomTestpaperBuilder($biz);
-        };
-
-        $biz['file_fire_wall_factory'] = function ($biz) {
-            return new FireWallFactory($biz);
-        };
-
-        $biz['testpaper_builder.homework'] = function ($biz) {
-            return new HomeworkBuilder($biz);
-        };
-
-        $biz['testpaper_builder.exercise'] = function ($biz) {
-            return new ExerciseBuilder($biz);
-        };
-
         $biz['announcement_processor'] = function ($biz) {
             return new AnnouncementProcessorFactory($biz);
-        };
-
-        $biz['sms_processor.lesson'] = function ($biz) {
-            return new LessonSmsProcessor($biz);
         };
 
         $biz['sms_processor.liveOpen'] = function ($biz) {
@@ -97,16 +73,8 @@ class DefaultServiceProvider implements ServiceProviderInterface
             return new OpenCourseThreadFirewall();
         };
 
-        $biz['testpaper_pattern.questionType'] = function ($biz) {
-            return new QuestionTypePattern($biz);
-        };
-
         $biz['thread_event_processor.classroom'] = function ($biz) {
             return new ClassroomThreadEventProcessor($biz);
-        };
-
-        $biz['thread_event_processor.openCourse'] = function ($biz) {
-            return new OpenCourseThreadEventProcessor($biz);
         };
 
         $biz['thread_event_processor.article'] = function ($biz) {
@@ -119,16 +87,6 @@ class DefaultServiceProvider implements ServiceProviderInterface
 
         $biz['importer.classroom-member'] = function ($biz) {
             return new ClassroomMemberImporter($biz);
-        };
-
-        $biz['course.strategy_context'] = function ($biz) {
-            return new StrategyContext($biz);
-        };
-        $biz['course.default_strategy'] = function ($biz) {
-            return new DefaultStrategy($biz);
-        };
-        $biz['course.normal_strategy'] = function ($biz) {
-            return new NormalStrategy($biz);
         };
 
         $biz['user.register.type.toolkit'] = function ($biz) {
@@ -153,14 +111,6 @@ class DefaultServiceProvider implements ServiceProviderInterface
 
         $biz['user.register.distributor'] = function ($biz) {
             return new DistributorRegistDecoderImpl($biz);
-        };
-
-        $biz['distributor.sync.user'] = function ($biz) {
-            return new SyncUserServiceImpl($biz);
-        };
-
-        $biz['distributor.sync.order'] = function ($biz) {
-            return new SyncOrderServiceImpl($biz);
         };
 
         $biz['biz_captcha'] = $biz->factory(function ($biz) {
@@ -199,12 +149,6 @@ class DefaultServiceProvider implements ServiceProviderInterface
 
         $biz['email_rate_limiter'] = function ($biz) {
             return new EmailRateLimiter($biz);
-        };
-
-        $biz['render_view_resolvers'] = function ($biz) {
-            return array(
-                new CourseRenderViewResolver($biz),
-            );
         };
 
         $biz['template_extension.live'] = array(

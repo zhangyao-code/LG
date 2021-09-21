@@ -1,6 +1,6 @@
 <div class="swiper-container">
   <div class="swiper-wrapper">
-    {% for swiper in setting('homepage_swiper', []) %}
+    {% for swiper in setting.swiper %}
       {% if swiper|default() %}
         <div class="swiper-slide">
           <a href="javascript:"><img src="{{ asset(swiper) }}"></a>

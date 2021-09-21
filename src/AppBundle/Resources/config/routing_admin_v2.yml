@@ -1855,25 +1855,37 @@ admin_v2_homepage_tab_manage:
     path: /homepage/tab
     defaults: { _controller: AppBundle:AdminV2/Homepage/Homepage:tab }
 
-admin_v2_homepage_tab_setting:
-    path: /homepage/tab/setting
-    defaults: { _controller: AppBundle:AdminV2/Homepage/Homepage:tabSetting }
+admin_v2_homepage_foot_tab_manage:
+    path: /homepage/foot_tab
+    defaults: { _controller: AppBundle:AdminV2/Homepage/Homepage:footTab }
+
+admin_v2_homepage_friend_tab_manage:
+    path: /homepage/friend_tab
+    defaults: { _controller: AppBundle:AdminV2/Homepage/Homepage:friendTab }
 
 admin_v2_homepage_swiper_manage:
     path: /homepage/swiper/setting
     defaults: { _controller: AppBundle:AdminV2/Homepage/Homepage:swiperSetting }
 
-admin_v2_homepage_solute_manage:
-    path: /homepage/solute/setting
-    defaults: { _controller: AppBundle:AdminV2/Homepage/Homepage:soluteSetting }
+admin_v2_news:
+    path: /homepage/news
+    defaults: { _controller: AppBundle:AdminV2/Homepage/News:index }
 
-admin_v2_homepage_trace_manage:
-    path: /homepage/trace/setting
-    defaults: { _controller: AppBundle:AdminV2/Homepage/Homepage:traceSetting }
+admin_v2_news_create:
+    path: /homepage/news/create
+    defaults: { _controller: AppBundle:AdminV2/Homepage/News:create }
 
-admin_v2_homepage_detail_manage:
-    path: /homepage/detail/setting
-    defaults: { _controller: AppBundle:AdminV2/Homepage/Homepage:detailSetting }
+admin_v2_news_update:
+    path: /homepage/news/{id}/update
+    defaults: { _controller: AppBundle:AdminV2/Homepage/News:update }
+
+admin_v2_news_delete:
+    path: /homepage/news/{id}/delete
+    defaults: { _controller: AppBundle:AdminV2/Homepage/News:delete }
+
+admin_v2_news_show_setting:
+  path: /homepage/news/{id}/show_setting
+  defaults: { _controller: AppBundle:AdminV2/Homepage/News:show }
 
 admin_v2_homepage_swiper_upload:
     path: /homepage/image/upload

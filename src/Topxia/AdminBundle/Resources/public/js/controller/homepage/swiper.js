@@ -6,9 +6,6 @@ define(function(require, exports, module) {
 
     exports.run = function() {
         let $form = $("#swiper-form");
-        let $soluteFrom = $('#solute-form')
-      let $traceForm = $('#trace-form');
-        let $detailForm = $('#detail-form');
         let upload1 = new WebUploader({
             element: '#js-swiper1'
           });
@@ -75,16 +72,30 @@ define(function(require, exports, module) {
         let upload22 = new WebUploader({
           element: '#js-detail'
         });
-
+        let upload23 = new WebUploader({
+          element: '#footIcon'
+        });
+        let upload24 = new WebUploader({
+          element:'#connect-weixin'
+        });
       upload22.on('uploadSuccess', function(file, response ) {
         let  url = $("#js-detail").data("gotoUrl");
         $.post(url, response ,function(data){
-          $("#js-detail").css('background',`url(${data['url']}) center no-repeat`);
+          $(".aboutbg").css('background',`url(${data['url']}) center no-repeat`);
           $("#js-detail").find('.js-swiper-value').val(data.path);
           Notify.success(Translator.trans('上传图片成功！'));
         });
       });
 
+      upload23.on('uploadSuccess', function(file, response ) {
+        let  url = $("#footIcon").data("gotoUrl");
+        $.post(url, response ,function(data){
+          $('.js-footicon-value').val(data.path);
+          $("#footIcon").find(".webuploader-pick").html('<img src="' + data.url + '">');
+          console.log($('.js-footicon-value').val());
+          Notify.success(Translator.trans('上传图片成功！'));
+        });
+      });
         uploadSuccess(upload1);
         uploadSuccess(upload2);
         uploadSuccess(upload3);
@@ -106,15 +117,14 @@ define(function(require, exports, module) {
         uploadSuccess(upload19);
         uploadSuccess(upload20);
         uploadSuccess(upload21);
-
-
+        uploadSuccess(upload24);
       function uploadSuccess($event){
 
         $event.on('uploadSuccess', function(file, response ) {
           let parent = $event.element.parents('.img-group');
           let  url = $(".js-swiper").data("gotoUrl");
           $.post(url, response ,function(data){
-              if(parent.find('.site-logo-container')){
+              if(parent.find('.site-logo-container').length >0){
                 parent.find(".site-logo-container").html('<img src="' + data.url + '">');
               }else{
                 parent.find(".webuploader-pick").html('<img src="' + data.url + '">');
@@ -135,26 +145,6 @@ define(function(require, exports, module) {
 
       $('#save-swiper').on('click', function(){
         $.post($form.data('saveUrl'), $form.serialize(), function(data){
-          Notify.success('设置成功');
-        })
-      })
-      $('#save-swiper').on('click', function(){
-        $.post($form.data('saveUrl'), $form.serialize(), function(data){
-          Notify.success('设置成功');
-        })
-      })
-      $('#save-solute').on('click', function(){
-        $.post($soluteFrom.data('saveUrl'), $soluteFrom.serialize(), function(data){
-          Notify.success('设置成功');
-        })
-      })
-      $('#save-trace').on('click', function(){
-        $.post($traceForm.data('saveUrl'), $traceForm.serialize(), function(data){
-          Notify.success('设置成功');
-        })
-      })
-      $('#save-detail').on('click', function(){
-        $.post($detailForm.data('saveUrl'), $detailForm.serialize(), function(data){
           Notify.success('设置成功');
         })
       })

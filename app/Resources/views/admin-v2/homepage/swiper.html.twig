@@ -10,7 +10,7 @@
 
 {% block main %}
   <style>
-    .swiper-from img{
+    .swiper-from-group img{
       width: 622px;
       height: 220px;
     }
@@ -40,30 +40,77 @@
       font-size:16px;
       line-height:30px;
       padding:10px 0 0 40px;
-      position: relative;
-      top: -410px;
+      position: absolute;
+      right: -9px;
+      top: 165px;
     }
     .detail-abp textarea{
       background-color: transparent;
       border: none;
       width: 100%;
-      height: 390px;
+    }
+    .footer-input {
+      width: 100%;
+      border: none;
+      color: #fff;
+      height: 40px !important;
+      background-color: #333;
+    }
+    .footerCon img {
+      width: 200px;
+      height: 60px;
+      float: left;
+    }
+    .aboutbg div {
+      height: 460px;
     }
   </style>
+  <link href="/css/index.css" rel="stylesheet" />
+  <link href="/css/base.css" rel="stylesheet" />
 <form class="form-horizontal swiper-from" id="swiper-form" method="post" data-save-url="{{ path('admin_v2_homepage_swiper_manage') }}">
-    <fieldset>
+    <div class="form-group img-group">
+      <div class="col-md-2 control-label">
+        <label for="logo">{{'电话'|trans}}</label>
+      </div>
+      <div class="col-md-8 controls">
+        <input class="form-control" name="connect[mobile]" value="{{ setting.connect.mobile|default() }}">
+      </div>
+    </div>
+  <div class="form-group img-group">
+    <div class="col-md-2 control-label">
+      <label for="logo">{{'qq'|trans}}</label>
+    </div>
+    <div class="col-md-8 controls">
+      <input class="form-control" name="connect[qq]" value="{{ setting.connect.qq|default() }}">
+    </div>
+  </div>
+  <div class="form-group img-group">
+    <div class="col-md-2 control-label">
+      <label for="logo">{{'微信二维码'|trans}}</label>
+    </div>
+    <div class="col-md-8 controls">
+      <div class="site-logo-container">{% if setting.connect.weixin|default() %}<img src="{{ asset(setting.connect.weixin) }}">{% endif %}</div>
+      <a class="btn btn-default js-swiper" id="connect-weixin"
+         data-upload-token="{{ upload_token('system', 'image') }}"
+         data-goto-url="{{ path('admin_v2_homepage_swiper_upload') }}">{{'form.btn.upload'|trans}}</a>
+      <button class="btn btn-default js-swiper-delete {% if not setting.connect.weixin|default() %}hidden{% endif %}"  type="button" data-url="{{ path('admin_v2_setting_logo_remove') }}" >{{'form.btn.delete'|trans}}</button>
+      <input class="hidden js-swiper-value" name="connect[weixin]" value="{{ setting.connect.weixin|default() }}">
+    </div>
+  </div>
+
+    <div class="swiper-from-group">
       <h3 style="text-align: center">轮播图设置</h3><p style="text-align: center">(图片比例1440:509)</p>
       <div class="form-group img-group">
         <div class="col-md-2 control-label">
           <label for="logo">{{'轮播图1'|trans}}</label>
         </div>
         <div class="col-md-8 controls">
-          <div class="site-logo-container">{% if swiper.swiper1|default() %}<img src="{{ asset(swiper.swiper1) }}">{% endif %}</div>
+          <div class="site-logo-container">{% if setting.swiper.swiper1|default() %}<img src="{{ asset(setting.swiper.swiper1) }}">{% endif %}</div>
           <a class="btn btn-default js-swiper" id="js-swiper1"
              data-upload-token="{{ upload_token('system', 'image') }}"
              data-goto-url="{{ path('admin_v2_homepage_swiper_upload') }}">{{'form.btn.upload'|trans}}</a>
-          <button class="btn btn-default js-swiper-delete {% if not swiper.swiper1|default() %}hidden{% endif %}"  type="button" data-url="{{ path('admin_v2_setting_logo_remove') }}" >{{'form.btn.delete'|trans}}</button>
-          <input class="hidden js-swiper-value" name="swiper[swiper1]" value="{{ swiper.swiper1|default() }}">
+          <button class="btn btn-default js-swiper-delete {% if not setting.swiper.swiper1|default() %}hidden{% endif %}"  type="button" data-url="{{ path('admin_v2_setting_logo_remove') }}" >{{'form.btn.delete'|trans}}</button>
+          <input class="hidden js-swiper-value" name="swiper[swiper1]" value="{{ setting.swiper.swiper1|default() }}">
         </div>
       </div>
       <div class="form-group img-group">
@@ -71,12 +118,12 @@
           <label for="logo">{{'轮播图2'|trans}}</label>
         </div>
         <div class="col-md-8 controls">
-          <div class="site-logo-container">{% if swiper.swiper2|default() %}<img src="{{ asset(swiper.swiper2) }}">{% endif %}</div>
+          <div class="site-logo-container">{% if setting.swiper.swiper2|default() %}<img src="{{ asset(setting.swiper.swiper2) }}">{% endif %}</div>
           <a class="btn btn-default js-swiper" id="js-swiper2"
              data-upload-token="{{ upload_token('system', 'image') }}"
              data-goto-url="{{ path('admin_v2_homepage_swiper_upload') }}">{{'form.btn.upload'|trans}}</a>
-          <button class="btn btn-default js-swiper-delete {% if not swiper.swiper2|default() %}hidden{% endif %}"  type="button" data-url="{{ path('admin_v2_setting_logo_remove') }}" >{{'form.btn.delete'|trans}}</button>
-          <input class="hidden js-swiper-value" name="swiper[swiper2]" value="{{ swiper.swiper2|default() }}">
+          <button class="btn btn-default js-swiper-delete {% if not setting.swiper.swiper2|default() %}hidden{% endif %}"  type="button" data-url="{{ path('admin_v2_setting_logo_remove') }}" >{{'form.btn.delete'|trans}}</button>
+          <input class="hidden js-swiper-value" name="swiper[swiper2]" value="{{ setting.swiper.swiper2|default() }}">
         </div>
       </div>
       <div class="form-group img-group">
@@ -84,12 +131,12 @@
           <label for="logo">{{'轮播图3'|trans}}</label>
         </div>
         <div class="col-md-8 controls">
-          <div class="site-logo-container">{% if swiper.swiper3|default() %}<img src="{{ asset(swiper.swiper3) }}">{% endif %}</div>
+          <div class="site-logo-container">{% if setting.swiper.swiper3|default() %}<img src="{{ asset(setting.swiper.swiper3) }}">{% endif %}</div>
           <a class="btn btn-default js-swiper" id="js-swiper3"
              data-upload-token="{{ upload_token('system', 'image') }}"
              data-goto-url="{{ path('admin_v2_homepage_swiper_upload') }}">{{'form.btn.upload'|trans}}</a>
-          <button class="btn btn-default js-swiper-delete {% if not swiper.swiper3|default() %}hidden{% endif %}"  type="button" data-url="{{ path('admin_v2_setting_logo_remove') }}" >{{'form.btn.delete'|trans}}</button>
-          <input class="hidden js-swiper-value" name="swiper[swiper3]" value="{{ swiper.swiper3|default() }}">
+          <button class="btn btn-default js-swiper-delete {% if not setting.swiper.swiper3|default() %}hidden{% endif %}"  type="button" data-url="{{ path('admin_v2_setting_logo_remove') }}" >{{'form.btn.delete'|trans}}</button>
+          <input class="hidden js-swiper-value" name="swiper[swiper3]" value="{{ setting.swiper.swiper3|default() }}">
         </div>
       </div>
       <div class="form-group img-group">
@@ -97,12 +144,12 @@
           <label for="logo">{{'轮播图4'|trans}}</label>
         </div>
         <div class="col-md-8 controls">
-          <div class="site-logo-container">{% if swiper.swiper4|default() %}<img src="{{ asset(swiper.swiper4) }}">{% endif %}</div>
+          <div class="site-logo-container">{% if setting.swiper.swiper4|default() %}<img src="{{ asset(setting.swiper.swiper4) }}">{% endif %}</div>
           <a class="btn btn-default js-swiper " id="js-swiper4"
              data-upload-token="{{ upload_token('system', 'image') }}"
              data-goto-url="{{ path('admin_v2_homepage_swiper_upload') }}">{{'form.btn.upload'|trans}}</a>
-          <button class="btn btn-default js-swiper-delete {% if not swiper.swiper4|default() %}hidden{% endif %}"  type="button" data-url="{{ path('admin_v2_setting_logo_remove') }}">{{'form.btn.delete'|trans}}</button>
-          <input class="hidden js-swiper-value" name="swiper[swiper4]" value="{{ swiper.swiper4|default() }}">
+          <button class="btn btn-default js-swiper-delete {% if not setting.swiper.swiper4|default() %}hidden{% endif %}"  type="button" data-url="{{ path('admin_v2_setting_logo_remove') }}">{{'form.btn.delete'|trans}}</button>
+          <input class="hidden js-swiper-value" name="swiper[swiper4]" value="{{ setting.swiper.swiper4|default() }}">
         </div>
       </div>
       <div class="form-group img-group">
@@ -110,113 +157,118 @@
           <label for="logo">{{'轮播图5'|trans}}</label>
         </div>
         <div class="col-md-8 controls">
-          <div class="site-logo-container">{% if swiper.swiper5|default() %}<img src="{{ asset(swiper.swiper5) }}">{% endif %}</div>
+          <div class="site-logo-container">{% if setting.swiper.swiper5|default() %}<img src="{{ asset(setting.swiper.swiper5) }}">{% endif %}</div>
           <a class="btn btn-default js-swiper" id="js-swiper5"
              data-upload-token="{{ upload_token('system', 'image') }}"
              data-goto-url="{{ path('admin_v2_homepage_swiper_upload') }}">{{'form.btn.upload'|trans}}</a>
-          <button class="btn btn-default js-swiper-delete {% if not swiper.swiper5|default() %}hidden{% endif %}"  type="button" data-url="{{ path('admin_v2_setting_logo_remove') }}">{{'form.btn.delete'|trans}}</button>
-          <input class="hidden js-swiper-value" name="swiper[swiper5]" value="{{ swiper.swiper5|default() }}">
+          <button class="btn btn-default js-swiper-delete {% if not setting.swiper.swiper5|default() %}hidden{% endif %}"  type="button" data-url="{{ path('admin_v2_setting_logo_remove') }}">{{'form.btn.delete'|trans}}</button>
+          <input class="hidden js-swiper-value" name="swiper[swiper5]" value="{{ setting.swiper.swiper5|default() }}">
         </div>
       </div>
-    </fieldset>
-    <div class="row form-group">
-      <div class="controls col-md-offset-2 col-md-8">
-        <button type="button" class="btn btn-primary" id="save-swiper">{{'保存'|trans}}</button>
+    </div>
+  <div class="form-horizontal content" >
+    <h3 style="text-align: center">模块设置</h3><p style="text-align: center">(点击文案和图片即可修改,蓝底图建议100*68，灰底建议90*62)</p>
+    <div class="part soluteList" style="height: 1500px">
+      <div style="text-align: center">
+        <input class="title" name="solute[title]" style="width: 900px" value="{{ setting.solute.soluteListTitle|default('全球领先的二维码追溯解决方案') }}"/>
       </div>
-    </div>
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token('site') }}">
-
-  </form>
-
-<form class="form-horizontal content" id="solute-form" method="post" data-save-url="{{ path('admin_v2_homepage_solute_manage') }}">
-  <link href="/css/index.css" rel="stylesheet" />
-  <h3 style="text-align: center">模块设置</h3><p style="text-align: center">(点击文案和图片即可修改,蓝底图建议100*68，灰底建议90*62)</p>
-  <div class="part soluteList" style="height: 1500px">
-    <div style="text-align: center">
-      <input class="title" name="soluteListTitle" style="width: 900px" value="{{ solute.soluteListTitle|default('全球领先的二维码追溯解决方案') }}"/>
-    </div>
-    {% for i in 1..4 %}
-      {% include 'admin-v2/homepage/soluteList.html.twig' with {index:'soluteList'~loop.index, solute:solute} %}
-    {% endfor %}
-  </div>
-  <div class="row form-group">
-    <div class="controls col-md-offset-2 col-md-8">
-      <button type="button" class="btn btn-primary" id="save-solute">{{'保存'|trans}}</button>
-    </div>
-  </div>
-  <input type="hidden" name="_csrf_token" value="{{ csrf_token('site') }}">
-</form>
-
-<form class="form-horizontal content" id="trace-form" method="post" data-save-url="{{ path('admin_v2_homepage_trace_manage') }}">
-  <link href="/css/index.css" rel="stylesheet" />
-  <h3 style="text-align: center">模块设置</h3><p style="text-align: center">(点击文案和图片即可修改,大图建议608*410，灰底建议120*120)</p>
-  <div class="part trace" style="width: 100%">
-    <input class="title" name="title" value="{{ trace.title|default('二维码追溯系统') }}">
-    <input class="desc" name="tip" value="{{ trace.title|default('二维码追溯系统') }}">
-    <div class="trace-info img-group">
-      <ul class="info-left" style="width: 590px">
-        <li><input name="li_1" value="{{ trace.li_1|default('li 内容') }}"></li>
-        <li><input name="li_2" value="{{ trace.li_2|default('li 内容') }}"></li>
-        <li><input name="li_3" value="{{ trace.li_3|default('li 内容') }}"></li>
-        <li><input name="li_4" value="{{ trace.li_4|default('li 内容') }}"></li>
-        <li><input name="li_5" value="{{ trace.li_5|default('li 内容') }}"></li>
-      </ul>
-      <a class="info-right js-swiper" id="traceImage" href="javascript:;"
-         data-upload-token="{{ upload_token('system', 'image') }}"
-         data-goto-url="{{ path('admin_v2_homepage_swiper_upload') }}">
-        <img src="{{ asset(trace.traceImage|default('images/1_16.png')) }}" />
-      </a>
-      <input class="hidden js-swiper-value" name="traceImage" value="{{ asset(trace.traceImage|default('images/1_16.png')) }}">
-    </div>
-    <div class="trace-step">
-      {% for index in 1..7 %}
-        <div class="step-item {% if index ==7 %}step-last{% endif %} img-group" {% if index <7 %}style="margin-right: 40px"{% endif %}>
-          <div class="item-img">
-            <img class="item-bg"
-                 src="/images/1_17.png"
-                 />
-            <a class="item-icon js-swiper" id="traceIcon{{ index }}" href="javascript:;"
-               data-upload-token="{{ upload_token('system', 'image') }}"
-               data-goto-url="{{ path('admin_v2_homepage_swiper_upload') }}">
-              <img src="{{ asset(trace['traceIcon'~index]|default('images/1_17_1.png')) }}" />
-            </a>
-            <input class="hidden js-swiper-value" name="traceIcon{{ index }}" value="{{ asset(trace['traceIcon'~index]|default('images/1_17_1.png')) }}">
-          </div>
-          <input class="item-text" name="traceIconTitle{{ index }}" value="{{ trace['traceIconTitle'~index]|default('icon标题') }}">
-        </div>
+      {% for i in 1..4 %}
+        {% include 'admin-v2/homepage/soluteList.html.twig' with {index:'soluteList'~loop.index, solute:setting} %}
       {% endfor %}
-
     </div>
   </div>
-{#    <div class="row form-group">#}
-{#      <div class="controls col-md-offset-2 col-md-8">#}
-{#        <button type="button" class="btn btn-primary" id="save-solute">{{'保存'|trans}}</button>#}
-{#      </div>#}
-{#    </div>#}
-  <div class="row form-group">
-    <div class="controls col-md-offset-2 col-md-8">
-      <button type="button" class="btn btn-primary" id="save-trace">{{'保存'|trans}}</button>
-    </div>
-  </div>
-  <input type="hidden" name="_csrf_token" value="{{ csrf_token('site') }}">
-</form>
 
-  <form class="form-horizontal content" id="detail-form" method="post" data-save-url="{{ path('admin_v2_homepage_detail_manage') }}">
-    <link href="/css/index.css" rel="stylesheet" />
-    <h3 style="text-align: center">模块设置</h3><p style="text-align: center">(点击文案和图片即可修改,大图1920*496)</p>
-    <div class="aboutbg" style="background:url({{ asset(detail['detailImage']|default('images/index_55.jpg')) }}) center no-repeat;" id="js-detail" data-upload-token="{{ upload_token('system', 'image') }}"
-         data-goto-url="{{ path('admin_v2_homepage_swiper_upload') }}">
-      <input class="hidden js-swiper-value" name="detailImage" value="{{ asset(detail['detailImage']|default('images/index_55.jpg')) }}">
-      <div class="contant">
-        <div class="abright">
-          <div class="abimg"><h2>创逸科技</h2></div>
-        </div>
+  <div class="form-horizontal content" >
+    <h3 style="text-align: center">模块设置</h3><p style="text-align: center">(点击文案和图片即可修改,大图建议608*410，灰底建议120*120)</p>
+    <div class="part trace" style="width: 100%">
+      <input class="title" name="trace[title]" value="{{ setting.trace.title|default('二维码追溯系统') }}">
+      <input class="desc" name="trace[tip]" value="{{ setting.trace.tip|default('二维码追溯系统') }}">
+      <div class="trace-info img-group">
+        <ul class="info-left" style="width: 590px">
+          <li><input name="trace[li_1]" value="{{ setting.trace.li_1|default('li 内容') }}"></li>
+          <li><input name="trace[li_2]" value="{{ setting.trace.li_2|default('li 内容') }}"></li>
+          <li><input name="trace[li_3]" value="{{ setting.trace.li_3|default('li 内容') }}"></li>
+          <li><input name="trace[li_4]" value="{{ setting.trace.li_4|default('li 内容') }}"></li>
+          <li><input name="trace[li_5]" value="{{ setting.trace.li_5|default('li 内容') }}"></li>
+        </ul>
+        <a class="info-right js-swiper" id="traceImage" style="width: 538px" href="javascript:;"
+           data-upload-token="{{ upload_token('system', 'image') }}"
+           data-goto-url="{{ path('admin_v2_homepage_swiper_upload') }}">
+          <img src="{{ asset(setting.trace.traceImage|default('images/1_16.png')) }}" />
+        </a>
+        <input class="hidden js-swiper-value" name="trace[traceImage]" value="{{ asset(setting.trace.traceImage|default('images/1_16.png')) }}">
       </div>
+      <div class="trace-step">
+        {% for index in 1..7 %}
+          <div class="step-item {% if index ==7 %}step-last{% endif %} img-group" {% if index <7 %}style="margin-right: 40px"{% endif %}>
+            <div class="item-img">
+              <img class="item-bg"
+                   src="/images/1_17.png"
+              />
+              <a class="item-icon js-swiper" id="traceIcon{{ index }}" href="javascript:;"
+                 data-upload-token="{{ upload_token('system', 'image') }}"
+                 data-goto-url="{{ path('admin_v2_homepage_swiper_upload') }}">
+                <img src="{{ asset(setting['trace']['traceIcon'~index]|default('images/1_17_1.png')) }}" />
+              </a>
+              <input class="hidden js-swiper-value" name="trace[traceIcon{{ index }}]" value="{{ asset(setting['trace']['traceIcon'~index]|default('images/1_17_1.png')) }}">
+            </div>
+            <input class="item-text" name="trace[traceIconTitle{{ index }}]" value="{{ setting['trace']['traceIconTitle'~index]|default('icon标题') }}">
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+    {#    <div class="row form-group">#}
+    {#      <div class="controls col-md-offset-2 col-md-8">#}
+    {#        <button type="button" class="btn btn-primary" id="save-solute">{{'保存'|trans}}</button>#}
+    {#      </div>#}
+    {#    </div>#}
+  </div>
+
+  <div class="form-horizontal content" style="position: relative" >
+    <h3 style="text-align: center">模块设置</h3><p style="text-align: center">(点击文案和图片即可修改,大图1920*496)</p>
+    <div  class="aboutbg" style="width:100%;height: 496px; background:url({{ asset(detail['detailImage']|default('images/index_55.jpg')) }}) center no-repeat;" >
+      <a class="js-swiper" id="js-detail" data-upload-token="{{ upload_token('system', 'image') }}"
+           data-goto-url="{{ path('admin_v2_homepage_swiper_upload') }}">
+        <input class="hidden js-swiper-value" name="detail[image]" value="{{ asset(setting.detail.image|default('images/index_55.jpg')) }}">
+        <div class="contant">
+          <div class="abright">
+            <div class="abimg"><h2>创逸科技</h2></div>
+          </div>
+        </div>
+      </a>
     </div>
     <div class="detail-abp" >
-      <textarea class="" name="detailContent">{{ detail['detailContent']|default('输入公司简介！') }}</textarea>
+      <textarea class=""  rows="13" name="detail[content]">{{ setting.detail.content|default('输入公司简介！') }}</textarea>
     </div>
+  </div>
+
+  <div class="form-horizontal content" style="margin-top:60px; height: 560px">
+    <h3 style="text-align: center">模块设置</h3><p style="text-align: center">(点击文案和图片即可修改,大图189*60)</p>
+    <div class="footer" style="min-width: 994px; with:1144px;height: 300px">
+      <div class="footerCon mll" style="padding-left: 40px">
+        <div class="con-left">
+          <div class="js-swiper" style="height: 59px" id="footIcon" href="javascript:;"
+             data-upload-token="{{ upload_token('system', 'image') }}"
+             data-goto-url="{{ path('admin_v2_homepage_swiper_upload') }}">
+            <img src="{{ asset(setting.foot.icon|default('/images/logo.png')) }}" />
+          </div>
+          <input class="hidden js-footicon-value" name="foot[icon]" value="{{ asset(setting.foot.icon|default('/images/logo.png')) }}">
+          <div class="left-desc" style="margin-top: 46px">
+            <input class="footer-input" name="foot[text1]" value="{{ setting.foot.text1|default('创逸科技有限公司') }}"/>
+            <input class="footer-input" name="foot[text2]" value="{{ setting.foot.text2|default('地址：深圳市宝安区F518时尚创意园F6栋3楼') }}"/>
+            <input class="footer-input" name="foot[text3]" value="{{  setting.foot.text3|default('全国统一服务热线：13310858165')  }}"/>
+            <input class="footer-input" name="foot[text4]" value="{{   setting.foot.text4|default('E-mail : letsun@letsun.com.cn') }}"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      <div class="controls col-md-offset-2 col-md-8" style="position: relative;top:-50px">
+        <button type="button" class="btn btn-primary" id="save-swiper">{{'保存'|trans}}</button>
+      </div>
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('site') }}">
+
   </form>
-  <button style="margin-left: 16.66666667%;margin-top: 30px" type="button" class="btn btn-primary" id="save-detail">{{'保存'|trans}}</button>
+
 {% endblock %}

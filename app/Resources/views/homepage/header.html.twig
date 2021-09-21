@@ -1,0 +1,35 @@
+{% set setting = setting('homepage_swiper', []) %}
+<header class="header clearfix">
+  <a href="javascript:;" title="" class="butons"></a>
+  <div class="head-logo">
+    <a href="/" title="">
+      <img src="/images/logo.png" alt="" class="logo_white" />
+    </a>
+  </div>
+  <div class="rightIcon ">
+
+    <img src="/images/tel.png" align="absmiddle">
+    <span>{{ setting.connect.mobile|default() }}</span>
+
+  </div>
+  <div class="head-nav clearfix">
+    <ul class="navul clearfix">
+      {% set navigations = data('NavigationsTree', {type: 'homepage'}) %}
+      {% for navigation in navigations %}
+        <li>
+          <div class="navs clearfix">
+            <a class="ones" href="{{ navigation.url }}" {% if navigation.isNewWin %}target="_blank"{% endif %}>{{navigation.name}}</a>
+          </div>
+          <div class="select">
+            {% for item in navigation.children|default() %}
+              <a href="{{ item.url }}" {% if item.isNewWin %}target="_blank"{% endif %}>{{item.name}}</a>
+            {% endfor %}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+</header>
+<script src="/js/header.js"></script>
+<script src="/js/backTop.js"></script>

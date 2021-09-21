@@ -25,10 +25,27 @@ class HomepageController extends BaseController
         ));
     }
 
-    public function tabSettingAction(Request $request)
+    public function footTabAction(Request $request)
     {
+        $type = $request->query->get('type', 'foot');
 
-        return $this->render('admin-v2/homepage/setting.html.twig', array(
+        $navigations = $this->getNavigationService()->getNavigationsListByType($type);
+
+        return $this->render('admin-v2/homepage/foot-tab.html.twig', array(
+            'type' => 'foot',
+            'navigations' => $navigations,
+        ));
+    }
+
+    public function friendTabAction(Request $request)
+    {
+        $type = $request->query->get('type', 'friend');
+
+        $navigations = $this->getNavigationService()->getNavigationsListByType($type);
+
+        return $this->render('admin-v2/homepage/friend-tab.html.twig', array(
+            'type' => 'friend',
+            'navigations' => $navigations,
         ));
     }
 
@@ -36,42 +53,12 @@ class HomepageController extends BaseController
     {
         if($request->getMethod() == 'POST') {
             $data = $request->request->all();
-            $this->getSettingService()->set('homepage_swiper', $data['swiper']);
+            $this->getSettingService()->set('homepage_swiper', $data);
             return $this->createJsonResponse(true);
         }
         return $this->render('admin-v2/homepage/swiper.html.twig', array(
-            'swiper'=> $this->getSettingService()->get('homepage_swiper', array()),
-            'solute'=> $this->getSettingService()->get('homepage_solute', array()),
-            'trace' => $this->getSettingService()->get('homepage_trace', array()),
-            'detail'=> $this->getSettingService()->get('homepage_detail', array()),
+            'setting'=> $this->getSettingService()->get('homepage_swiper', array()),
         ));
-    }
-
-    public function soluteSettingAction(Request $request)
-    {
-        if($request->getMethod() == 'POST') {
-            $data = $request->request->all();
-            $this->getSettingService()->set('homepage_solute', $data);
-            return $this->createJsonResponse(true);
-        }
-    }
-
-    public function traceSettingAction(Request $request)
-    {
-        if($request->getMethod() == 'POST') {
-            $data = $request->request->all();
-            $this->getSettingService()->set('homepage_trace', $data);
-            return $this->createJsonResponse(true);
-        }
-    }
-
-    public function detailSettingAction(Request $request)
-    {
-        if($request->getMethod() == 'POST') {
-            $data = $request->request->all();
-            $this->getSettingService()->set('homepage_detail', $data);
-            return $this->createJsonResponse(true);
-        }
     }
 
     public function uploadAction(Request $request)

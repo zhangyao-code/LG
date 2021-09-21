@@ -64,7 +64,7 @@
         <input class="hidden js-swiper-value" name="{{ index }}[icon1]" value="{{  asset(solute[index].icon1|default('/images/bcgy0.png')) }}">
       </div>
       <div>
-        <input name="{{ index }}[title]" class="list-title" value="{{ solute[index].title }}">
+        <input name="{{ index }}[title]" class="list-title" value="{{ solute[index].title|default('标题') }}">
       </div>
       <div>
         <input class="english list-titleEn" name="{{ index }}[titleEn]" value="{{ solute[index].titleEn|default('Material supply') }}">

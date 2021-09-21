@@ -1,13 +1,12 @@
 <div class="part soluteList">
-  {% set solute = setting('homepage_solute', []) %}
-  <h3 class="title">{{ solute.soluteListTitle|default('全球领先的二维码追溯解决方案') }}</h3>
-  {% for index,value in solute %}
 
-    {% if not (index == 'soluteListTitle') %}
+  <h3 class="title">{{ solute.soluteListTitle|default('全球领先的二维码追溯解决方案') }}</h3>
+  {% for index,value in setting %}
+    {% if index|slice(0,10) == 'soluteList' %}
       <div class="li {% if index == 'soluteList1' %}active{% endif %} ">
         <div class="block">
           <div class="head">
-            <div class="img"><img src="{{ asset(solute[index].icon2) }}" alt=""></div>
+            <div class="img"><img src="{{ asset(value.icon2) }}" alt=""></div>
             <h4>{{value.title}}</h4>
             <p class="english">{{ value.titleEn }}</p>
           </div>
@@ -24,7 +23,7 @@
         <div class="hover">
 
           <div class="head">
-            <div class="img"><img src="{{ asset(solute[index].icon1) }}" alt=""></div>
+            <div class="img"><img src="{{ asset(value.icon1) }}" alt=""></div>
             <h4>{{value.title}}</h4>
             <p class="english">{{ value.titleEn }}</p>
           </div>

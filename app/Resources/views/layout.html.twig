@@ -48,7 +48,7 @@
     <link rel="icon" href="{{ asset(setting('site.favicon')) }}" type="image/x-icon"/>
     <link rel="shortcut icon" href="{{ asset(setting('site.favicon')) }}" type="image/x-icon" media="screen"/>
   {% endif %}
-
+  <link href="/css/base.css" rel="stylesheet" />
   <!--[if lt IE 9]>
   <script src="{{ asset('static-dist/libs/html5shiv.js') }}"></script>
   <script src="{{ asset('static-dist/es5-shim/es5-shim.js') }}"></script>
@@ -72,8 +72,7 @@
   <div class="es-wrap">
     {% block header %}
       {% include 'site-hint.html.twig' %}
-{#      {% include 'default/header.html.twig' %}#}
-{#      {% include 'default/exception.html.twig' %}#}
+      {% include 'homepage/header.html.twig' %}
     {% endblock %}
 
     {% block full_content %}

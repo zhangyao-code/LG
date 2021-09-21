@@ -332,21 +332,11 @@ class BaseController extends Controller
 
     public function render($view, array $parameters = array(), Response $response = null)
     {
-        $biz = $this->getBiz();
-        foreach ($biz['render_view_resolvers'] as $resolver) {
-            $view = $resolver->generateRenderView($view, $parameters);
-        }
-
         return parent::render($view, $parameters, $response);
     }
 
     public function renderView($view, array $parameters = array())
     {
-        $biz = $this->getBiz();
-        foreach ($biz['render_view_resolvers'] as $resolver) {
-            $view = $resolver->generateRenderView($view, $parameters);
-        }
-
         return parent::renderView($view, $parameters);
     }
 

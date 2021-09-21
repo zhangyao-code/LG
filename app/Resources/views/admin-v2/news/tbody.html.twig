@@ -1,0 +1,23 @@
+<tbody >
+  {% for new in news %}
+		<tr >
+      <td>
+        {{ new.title }}
+      </td>
+      <td>
+        {{ new.createdTime|date('Y-m-d H:i') }}
+      </td>
+		  <td>
+        <a class="btn btn-sm btn-default edit-btn" href="{{ path('homepage_new_show', {id:new.id}) }}" target="_blank">{{'查看'|trans}}</a>
+        <button class="btn btn-sm btn-default edit-btn" data-url="{{ path('admin_v2_news_update', {id:new.id}) }}" data-toggle="modal" data-target="#modal">{{'admin.setting.navigation.edit_btn'|trans}}</button>
+	        <button class="btn btn-sm btn-default delete-btn" data-url="{{ path('admin_v2_news_delete', {id:new.id}) }}" data-target="{{ new.id }}">{{'form.btn.delete'|trans}}</button>
+          <span class="es-switch {% if new.home >0 %}is-active{% endif %}" data-url="{{ path('admin_v2_news_show_setting', {id:new.id}) }}">
+            <input class="es-switch__input" type="text" value="1" data-close="0" data-open="1">
+          </span>
+      </td>
+		 </tr>
+	{% else %}
+	  <tr><td colspan="20"><div class="empty">{{'site.datagrid.empty'|trans}}</div></td></tr>
+  {% endfor %}
+
+</tbody>

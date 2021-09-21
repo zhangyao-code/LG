@@ -1,7 +1,7 @@
-{% set solute = setting('homepage_trace', []) %}
+{% set solute = setting.trace|default() %}
 <div class="part trace">
   <h3 class="title">{{ solute.title }}</h3>
-  <p class="desc">{{ solute.tip }}</p>
+  <p class="desc">{{ solute.tip|default() }}</p>
   <div class="trace-info">
     <ul class="info-left">
       {% for index in 1..5 %}

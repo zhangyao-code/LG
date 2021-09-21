@@ -16,7 +16,6 @@ class CustomBundle extends PluginBase
     {
         parent::boot();
         $biz = $this->container->get('biz');
-        $biz->register(new CustomServiceProvider());
     }
 
     public function getEnabledExtensions()

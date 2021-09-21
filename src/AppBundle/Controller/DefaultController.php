@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Common\ArrayToolkit;
+use Biz\News\Service\Impl\NewsServiceImpl;
 use Biz\Task\Service\TaskService;
 use Biz\Theme\Service\ThemeService;
 use Biz\Content\Service\BlockService;
@@ -22,7 +23,19 @@ class DefaultController extends BaseController
 {
     public function indexAction(Request $request)
     {
-        return $this->render('homepage/index.html.twig', array());
+        $news = $this->getNewsService()->searchNews(array('home'=>1),array('createdTime'=>'desc'), 0, 10);
+        return $this->render('homepage/index.html.twig', array(
+            'news'=> $news
+        ));
+    }
+
+    public function newsAction(Request $request, $id)
+    {
+        $new = $this->getNewsService()->getNews($id);
+        $new = $this->getNewsService()->updateNews($id, array('watch'=>$new['watch']+1));
+        return $this->render('homepage/new-show.html.twig', array(
+            'new'=> $new
+        ));
     }
 
     public function appDownloadAction()
@@ -277,14 +290,6 @@ class DefaultController extends BaseController
     }
 
     /**
-     * @return BatchNotificationService
-     */
-    protected function getBatchNotificationService()
-    {
-        return $this->getBiz()->service('User:BatchNotificationService');
-    }
-
-    /**
      * @return ThemeService
      */
     protected function getThemeService()
@@ -293,23 +298,10 @@ class DefaultController extends BaseController
     }
 
     /**
-     * @return CourseSetService
+     * @return NewsServiceImpl
      */
-    protected function getCourseSetService()
+    protected function getNewsService()
     {
-        return $this->getBiz()->service('Course:CourseSetService');
-    }
-
-    protected function getCourseMemberService()
-    {
-        return $this->getBiz()->service('Course:MemberService');
-    }
-
-    /**
-     * @return TaskService
-     */
-    protected function getTaskService()
-    {
-        return $this->getBiz()->service('Task:TaskService');
+        return $this->createService('News:NewsService');
     }
 }

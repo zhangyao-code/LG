@@ -603,87 +603,170 @@ html {
                 display: block;
             }
 /*************************底部***************************/
+
 .footer {
+    min-height: 370px;
+    float:left;
     min-width: 1200px;
-    background: #0F2B6C;
+    background: #333;
+}
+.footer .footerCon {
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 25px;
+    padding-bottom: 15px;
+}
+.footer .footerCon:before,
+.footer .footerCon:after {
+    content: " ";
+    display: table;
+}
+.footer .footerCon:after {
+    clear: both;
+}
+.footer .footerCon .con-left {
+    float: left;
+}
+.footer .footerCon .con-left .left-logo {
+    width: 189px;
+    height: 60px;
+    display: block;
+}
+.footer .footerCon .con-left .left-desc {
+    margin-top: 15px;
+}
+.footer .footerCon .con-left .left-desc p {
+    margin-bottom: 10px;
+    line-height: 20px;
+    color: #fff;
+    font-size: 14px;
+}
+.footer .footerCon .con-left .left-desc .phone-number {
+    color: #3177eb;
+}
+.footer .footerCon .con-left .apply-use {
+    width: 120px;
+    height: 36px;
+    margin-top: 20px;
+    display: block;
+    line-height: 36px;
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
+    background: #3177eb;
+}
+.footer .footerCon .con-right {
+    float: left;
+}
+.footer .footerCon .con-right .right-list:before,
+.footer .footerCon .con-right .right-list:after {
+    content: " ";
+    display: table;
+}
+.footer .footerCon .con-right .right-list:after {
+    clear: both;
+}
+.footer .footerCon .con-right .right-list li {
+    float: left;
+}
+.footer .footerCon .con-right .right-list li a {
+    padding: 0 25px;
+    display: block;
+    line-height: 30px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+}
+.footer .footerCon .con-right .right-list li a:hover {
+    color: #3176eb;
+}
+.footer .footerCon .con-right .right-list li .right-second {
+    margin-top: 10px;
+}
+.footer .footerCon .con-right .right-list li .right-second li {
+    float: none;
+}
+.footer .footerCon .con-right .right-list li .right-second li a {
+    display: block;
+    line-height: 30px;
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+}
+.footer .footerCon .con-right .right-list li .right-second li a:hover {
+    color: #3176eb;
+}
+.footer .footerMark {
+    border-top: 1px solid #666;
+}
+.footer .footerMark .markCon {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 10px 0;
+    color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+.footer .footerMark .markCon h4 {
+    font-weight: 500;
+    line-height: 30px;
+}
+.footer .footerMark .markCon h4 a {
+    padding-right: 5px;
+    color: #fff;
+}
+.footer .footerMark .icp-bottom {
+    padding-top: 10px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 30px;
+    text-align: center;
+    border-top: 1px solid #666;
+}
+.footer .footerMark .icp-bottom .icp .statistics {
+    margin-left: 30px;
 }
 
-    .footer .footerCon {
-        width: 1200px;
-        margin: 0 auto;
-    }
+h4{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
 
-        .footer .footerCon .footerList {
-            padding: 10px 0;
-            color: #fff;
-        }
+.footer {
+    min-width: 1200px;
+}
 
-            .footer .footerCon .footerList:before,
-            .footer .footerCon .footerList:after {
-                content: " ";
-                display: table;
-            }
-
-            .footer .footerCon .footerList:after {
-                clear: both;
-            }
-
-            .footer .footerCon .footerList li {
-                float: left;
-                margin-right: 40px;
-            }
-
-                .footer .footerCon .footerList li h3 {
-                    width: 90px;
-                    border-bottom: 1px solid #fff;
-                    font-size: 16px;
-                    line-height: 50px;
-                    font-weight: 500;
-                }
-
-                .footer .footerCon .footerList li p {
-                    font-size: 14px;
-                    line-height: 40px;
-                }
-
-                    .footer .footerCon .footerList li p .statistics {
-                        margin-left: 10px;
-                    }
-
-                .footer .footerCon .footerList li .codeImg {
-                    margin-top: 20px;
-                    width: 100%;
-                    display: block;
-                }
-
-                .footer .footerCon .footerList li .imgText {
-                    text-align: center;
-                }
-
-    .footer .footerMark {
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-        .footer .footerMark .markCon {
-            width: 1200px;
-            margin: 0 auto;
-            padding: 10px 0;
-            color: #fff;
-            font-size: 12px;
-            box-sizing: border-box;
-        }
-
-            .footer .footerMark .markCon h4 {
-                font-weight: 500;
-                line-height: 30px;
-            }
-
-                .footer .footerMark .markCon h4 a {
-                    padding-right: 5px;
-                }
-
-
-
+.article-box{padding:0 20px 20px; margin:20px 0 16px;background: rgba(255, 255, 255, 0.65);border:0px solid #eee;}
+.article-top{padding: 20px 0 15px; border-bottom: 1px solid #eee;}
+.article-tit{margin-top: 5px; margin-bottom: 0px; font-size: 22px; font-weight:400;}
+.article-mt{ margin-top: 10px;}
+.article-mt span{font-size: 14px; color: #999;display: inline-block;margin-right:15px;}
+.article-mt span a{font-size: 14px; color: #999;display: inline-block;}
+.article-mt span .fa{width: 13px; display: inline-block; margin-right: 4px; font-size: 13px;}
+.article-main{font-size:15px;line-height:25px; padding: 18px 0;word-wrap:break-word;}
+.article-main img{margin: 5px 0;max-width:100%;height:auto!important;}
+.article-main h2, .article-main h3, .article-main h4, .article-main h5{padding:0;margin:25px 0;color: #333;font-weight:600;}
+.article-main h2{font-size:20px;line-height: 24px;font-weight:bold;border-left: 5px solid /*#C80000*/#2577B3;padding: 0 0 0 10px;}
+.article-main h3{font-size:18px;}
+.article-main h4{font-size:16px;}
+.article-main h5{font-size:14px;}
+.article-main ul, .article-main ol{margin:0 0 18px 42px}
+.article-main ul{list-style: disc;}
+.article-main ol{list-style: decimal;}
+.article-main li{margin-bottom: 6px;list-style: inherit;}
+.article-main p{margin-bottom:0px;word-wrap:break-word}
+.article-main pre{word-wrap:break-word}
+.article-main table{width:100%;border-top:solid 1px #ddd;border-left:solid 1px #ddd;margin-bottom:18px;border-collapse:collapse}
+.article-main table th{text-align:center;background-color:#f9f9f9;}
+.article-main table td,.article-main table th{border-bottom:solid 1px #ddd;border-right:solid 1px #ddd;padding:5px 10px}
+.article-main a{color: /*#C80000*/#2577B3;}
+.article-main a:hover{color: /*#C80000*/#2577B3;}
+.article-main pre,.comment pre{margin:20px 0;font:14px/22px 'courier new';background:#272822;padding:10px 16px;color:#F8F8D4;border:none}
+.article-main blockquote{margin: 30px;padding: 15px 20px 1px;font-size: 16px;color: #999;border-left: 6px solid #e4e4e4; background: #f0f0f0}
+.article-main blockquote p{margin:0;padding:0;margin-bottom: 10px;}
+.article-main embed{display: block;margin-left: auto;max-width: 100%;margin-right: auto;}
+.article-copyright{margin-top: 42px; background-color: #eee; padding-right: 30px; font-size: 14px; padding: 5px 0; color: #aaa; text-align: center;}
+.article-copyright a, .article-copyright a:hover{color: #aaa; text-decoration: none;}
 
 /*公司简介*/
 .bannerSon {

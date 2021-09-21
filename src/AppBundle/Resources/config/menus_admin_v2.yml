@@ -188,11 +188,42 @@ admin_v2:
                                     name: admin_v2.system.site.basic_tab
                                     router_name: admin_v2_homepage_tab_manage
                                     disable: true
+                        admin_v2_homepage_foot_tab:
+                            name: 底部导航设置
+                            router_name: admin_v2_homepage_foot_tab_manage
+                            children:
+                                admin_v2_homepage_foot_tab_manage:
+                                    name: admin_v2.system.site.basic_tab
+                                    router_name: admin_v2_homepage_foot_tab_manage
+                                    disable: true
+                        admin_v2_homepage_friend_tab:
+                            name: 友情链接
+                            router_name: admin_v2_homepage_friend_tab_manage
+                            children:
+                              admin_v2_homepage_friend_tab_manage:
+                                name: admin_v2.system.site.basic_tab
+                                router_name: admin_v2_homepage_friend_tab_manage
+                                disable: true
                         admin_v2_homepage_swiper:
-                            name: 首页轮播图设置
+                            name: 首页设置
                             router_name: admin_v2_homepage_swiper_manage
                             children:
                                 admin_v2_homepage_swiper_manage:
                                     name: admin_v2.system.site.basic_tab
                                     router_name: admin_v2_homepage_swiper_manage
                                     disable: true
+                        admin_v2_content:
+                            name: 自定义页面
+                            children:
+                                admin_v2_content_manage:
+                                    name: 自定义页面
+                                    router_name: admin_v2_content
+                                    disable: true
+                        admin_v2_news:
+                            name: 新闻
+                            children:
+                                admin_v2_news_manage:
+                                  name: 新闻
+                                  router_name: admin_v2_news
+                                  disable: true
+

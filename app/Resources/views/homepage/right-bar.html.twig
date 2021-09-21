@@ -1,0 +1,24 @@
+<div class="rightBar">
+  {% set setting = setting('homepage_swiper', []) %}
+  <div class="barList">
+    <a class="phoneNum" href="javascript:;">
+      <img src="/images/phone.png">
+      <p>{{ setting.connect.mobile|default() }}</p>
+    </a>
+
+    <a class="qqNum" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={{ setting.connect.qq|default()}}&site=qq&menu=yes">
+      <img src="/images/qq.png">
+      <p>点击咨询</p>
+    </a>
+
+    <a href="javascript:;">
+      <img src="/images/wx.png">
+      <p class="code"><img src="{{ asset(setting.connect.weixin|default()) }}"></p>
+    </a>
+
+    <a href="javascript:;" class="backTop">
+      <img class="backBtn" src="/images/top.png" alt="backTop">
+      <div class="topText">回到<br>顶部</div>
+    </a>
+  </div>
+</div>

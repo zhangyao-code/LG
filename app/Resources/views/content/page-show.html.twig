@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ content.title }} - {{ parent() }}{% endblock %}
+{% block keywords %}{{ content.title }} {{ setting('site.name') }}{% endblock %}
+{% block description %}{{ content.body|plain_text(100) }}{% endblock %}
+
+{% set siteNav = 'page/' ~ content.alias|default(content.id) %}
+
+{% set bodyClass = 'custompage' %}
+{% block content %}
+  {% if content.body %}
+  	  {{ content.body|cdn|raw }}
+  {% else %}
+    <div class="empty">{{'custom_page.empty'|trans}}</div>
+  {% endif %}
+  {% include 'homepage/right-bar.html.twig' %}
+{% endblock %}

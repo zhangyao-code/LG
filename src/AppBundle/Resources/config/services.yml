@@ -85,13 +85,6 @@ services:
     biz.service_provider.collector:
         class: Biz\ServiceProviderCollector
 
-    coupon_service_provider:
-        class: Biz\Coupon\CouponServiceProvider
-        calls:
-            - [setBiz, ['@biz']]
-        tags:
-            - { name: extension }
-
     mail_service_provider:
         class: Biz\Mail\MailServiceProvider
         calls:

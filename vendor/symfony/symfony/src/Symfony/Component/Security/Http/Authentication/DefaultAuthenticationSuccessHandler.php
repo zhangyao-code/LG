@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\Security\Http\Authentication;
 
+use Codeages\Biz\Framework\Service\Exception\NotFoundException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\HttpUtils;
@@ -30,7 +31,7 @@ class DefaultAuthenticationSuccessHandler implements AuthenticationSuccessHandle
     protected $providerKey;
     protected $defaultOptions = array(
         'always_use_default_target_path' => false,
-        'default_target_path' => '/',
+        'default_target_path' => '/admin',
         'login_path' => '/login',
         'target_path_parameter' => '_target_path',
         'use_referer' => false,
@@ -123,6 +124,6 @@ class DefaultAuthenticationSuccessHandler implements AuthenticationSuccessHandle
             return $targetUrl;
         }
 
-        return $this->options['default_target_path'];
+        return '/admin';
     }
 }

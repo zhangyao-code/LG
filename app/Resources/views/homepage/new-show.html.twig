@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ new.title }} - {{ parent() }}{% endblock %}
+{% block keywords %}{{ new.title }} {{ setting('site.name') }}{% endblock %}
+{% block description %}{{ new.content|plain_text(100) }}{% endblock %}
+
+{% set bodyClass = 'custompage' %}
+{% block content %}
+
+  {% if new.content %}
+    <div class="article w1">
+      <div class="archive-top">
+        <div class="archive-title">
+          <h1 itemprop="headline" style="text-align: center">{{new.title}}</h1>
+          <span></span></div>
+      </div>
+      <div class="article-box">
+        <header class="article-top">
+          <div class="article-mt"> <span class="time"><img style="margin-right: 2px;width: 12px" src="/images/time.png" alt="{{new.title}}" /> {{ new.createdTime|date('Y-m-d') }} </span> <span><img style="margin-right: 2px;width: 12px" src="/images/watch.png" alt="{{new.title}}" />{{ new.watch }}</span></div>
+        </header>
+        <article class="article-main">  {{ new.content|cdn|raw }} </article>
+      </div>
+    </div>
+  {% else %}
+    <div class="empty">{{'custom_page.empty'|trans}}</div>
+  {% endif %}
+  {% include 'homepage/right-bar.html.twig' %}
+{% endblock %}
