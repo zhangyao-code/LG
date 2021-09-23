@@ -18,7 +18,7 @@
         {% for item in  navigations %}
           <li>
             <a href="{{ item.url }}" {% if item.isNewWin %}target="_blank"{% endif %}>{{item.name}}</a>
-            {% if item.children %}
+            {% if item.children|default() %}
             <ul class="right-second">
               {% for child in item.children %}
                 <li>
@@ -46,7 +46,7 @@
 
     <div class="icp-bottom">
       Copyright  2021 安徽创逸科技有限公司 版权所有 |
-      <a class="icp" href="http://beian.miit.gov.cn" target="_blank">粤ICP备13083109号</a>
+      <a class="icp" href="http://beian.miit.gov.cn" target="_blank">{{ setting('site.icpUrl', '创逸科技') }}</a>
     </div>
 
   </div>

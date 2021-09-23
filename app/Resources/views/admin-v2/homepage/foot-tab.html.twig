@@ -1,7 +1,7 @@
 {% extends 'admin-v2/layout.html.twig' %}
 
 {% set menu = 'admin_v2_homepage_foot_tab_manage' %}
-
+{% set script_controller = 'navigation/index' %}
 {% block page_buttons %}
   <button class="btn btn-success btn-sm pull-right" id="add-navigation-btn" data-toggle="modal" data-target="#modal" data-url="{{ path('admin_v2_navigation_create', {type: type}) }}">
     添加
