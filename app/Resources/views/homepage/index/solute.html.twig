@@ -1,6 +1,6 @@
 <div class="part soluteList">
 
-  <h3 class="title">{{ solute.soluteListTitle|default('全球领先的二维码追溯解决方案') }}</h3>
+  <h3 class="title">{{ setting.solute.title|default('全球领先的二维码追溯解决方案') }}</h3>
   {% for index,value in setting %}
     {% if index|slice(0,10) == 'soluteList' %}
       <div class="li {% if index == 'soluteList1' %}active{% endif %} ">

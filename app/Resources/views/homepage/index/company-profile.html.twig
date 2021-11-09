@@ -1,11 +1,15 @@
 {% set detail = setting.detail|default() %}
-
+<div class="post" style="padding: 0px">
+  <div class="postTitle ">
+    <h3><i class="fa fa-quote-left"></i>关于创逸</h3>
+    <span class="title2">About</span> </div>
+</div>
 <div class="aboutbg" style="background:url({{ asset(detail['image']|default('images/index_55.jpg')) }}) center no-repeat;">
   <div class="contant">
     <div class="abright">
-      <div class="abimg"><h2>创逸科技</h2></div>
-      <div class="abp">
-        {{ detail.content }}
+      <div class="abimg"><h2 style="font-size: 30px">创逸科技</h2></div>
+      <div class="abp" style="max-width: 495px; margin-left: 20px;margin-top: 20px">
+        {{ detail.content|raw }}
       </div>
     </div>
   </div>

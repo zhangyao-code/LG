@@ -1,0 +1,471 @@
+{% extends 'homepage/layout.html.twig' %}
+{% import "admin-v2/macro.html.twig" as admin_macro %}
+
+{% block homepage_content %}
+  <link href="{{ asset('static-dist/app/css/main.css') }}" rel="stylesheet" />
+  <style>
+    .pagination {
+      display: inline-block;
+      padding-left: 0;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+    .pagination > li {
+      display: inline;
+    }
+    .pagination > li > a,
+    .pagination > li > span {
+      position: relative;
+      float: left;
+      padding: 8px 24px;
+      line-height: 1.42857143;
+      text-decoration: none;
+      color: #37b97d;
+      background-color: #ffffff;
+      border: 1px solid #dddddd;
+      margin-left: -1px;
+    }
+    .pagination > li:first-child > a,
+    .pagination > li:first-child > span {
+      margin-left: 0;
+      border-bottom-left-radius: 4px;
+      border-top-left-radius: 4px;
+    }
+    .pagination > li:last-child > a,
+    .pagination > li:last-child > span {
+      border-bottom-right-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+    .pagination > li > a:hover,
+    .pagination > li > span:hover,
+    .pagination > li > a:focus,
+    .pagination > li > span:focus {
+      color: #257e55;
+      background-color: #f5f5f5;
+      border-color: #dddddd;
+    }
+    .pagination > .active > a,
+    .pagination > .active > span,
+    .pagination > .active > a:hover,
+    .pagination > .active > span:hover,
+    .pagination > .active > a:focus,
+    .pagination > .active > span:focus {
+      z-index: 2;
+      color: #ffffff;
+      background-color: #37b97d;
+      border-color: #37b97d;
+      cursor: default;
+    }
+    .pagination > .disabled > span,
+    .pagination > .disabled > span:hover,
+    .pagination > .disabled > span:focus,
+    .pagination > .disabled > a,
+    .pagination > .disabled > a:hover,
+    .pagination > .disabled > a:focus {
+      color: #e0e0e0;
+      background-color: #ffffff;
+      border-color: #dddddd;
+      cursor: not-allowed;
+    }
+     .top {
+      position: relative;
+      width: 100%;
+    }
+     .top .top-bg {
+      width: 100%;
+      display: block;
+    }
+     .top .search-wra {
+      position: absolute;
+      left: 50%;
+      top: 60%;
+      z-index: 10;
+      width: 448px;
+      height: 40px;
+      padding: 12px 0 12px 12px;
+      margin-left: -224px;
+      margin-top: -20px;
+      background: rgba(85, 141, 234, 0.9);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#E5ffffff, endColorstr=#E5ffffff);
+    }
+     .top .search-wra:before,
+     .top .search-wra:after {
+      content: " ";
+      display: table;
+    }
+     .top .search-wra:after {
+      clear: both;
+    }
+     .top .search-wra .form-key {
+      position: relative;
+      float: left;
+      width: 358px;
+      height: 40px;
+      border-radius: 35px;
+      background: #fff;
+      overflow: hidden;
+    }
+     .top .search-wra .form-key .search-img {
+      position: absolute;
+      left: 12px;
+      top: 10px;
+      z-index: 1;
+      display: block;
+    }
+     .top .search-wra .form-key .form-input {
+      display: block;
+      width: 284px;
+      height: 40px;
+      padding: 0 34px 0 40px;
+      color: #999;
+      font-size: 16px;
+      line-height: 40px;
+    }
+     .top .search-wra .form-btn {
+      float: left;
+      margin-left: 20px;
+      font-size: 18px;
+      color: #fff;
+      line-height: 40px;
+      cursor: pointer;
+    }
+     .top .active {
+      background: #3b7fea;
+    }
+     .mainCon {
+      width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0 30px 0;
+      overflow: hidden;
+    }
+     .mainCon .navBar {
+      width: 1196px;
+      height: 56px;
+      margin: 0 auto;
+      border: 2px solid #3b7fea;
+      box-shadow: 10px 5px 5px #dddddd;
+    }
+     .mainCon .navBar .nav-item {
+      float: left;
+      display: block;
+      width: 598px;
+      height: 56px;
+      font-size: 16px;
+      text-align: center;
+      color: #3b7fea;
+      line-height: 56px;
+      background: #fff;
+    }
+     .mainCon .navBar .nav-item .nav-dec {
+      display: inline-block;
+    }
+     .mainCon .navBar .nav-item .nav-dec:before,
+     .mainCon .navBar .nav-item .nav-dec:after {
+      content: " ";
+      display: table;
+    }
+     .mainCon .navBar .nav-item .nav-dec:after {
+      clear: both;
+    }
+     .mainCon .navBar .nav-item .nav-dec .nav-img {
+      float: left;
+      margin-top: 14px;
+    }
+     .mainCon .navBar .nav-item .nav-dec .nav-img .old-img {
+      display: block;
+    }
+     .mainCon .navBar .nav-item .nav-dec .nav-img .news-img {
+      display: none;
+    }
+     .mainCon .navBar .nav-item .nav-dec .nav-text {
+      float: left;
+      margin-left: 6px;
+    }
+     .mainCon .navBar .active {
+      color: #fff;
+      background: #3b7fea;
+    }
+     .mainCon .navBar .active .nav-dec .nav-img .old-img {
+      display: none;
+    }
+     .mainCon .navBar .active .nav-dec .nav-img .news-img {
+      display: block;
+    }
+     .mainCon .newsBox {
+      width: 80%;
+      margin-left: 10%;
+      overflow: hidden;
+    }
+     .mainCon .newsBox .news {
+      width: 100%;
+      float: left;
+    }
+     .mainCon .newsBox .news .tabCon .newest .firItem {
+      min-height: 240px;
+      padding: 30px 0;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+    }
+     .mainCon .newsBox .news .tabCon .newest .firItem .newsRight {
+      width: 60%;
+      float: left;
+      margin-left: 20px;
+    }
+     .mainCon .newsBox .news .tabCon .newest .firItem .newsRight .date {
+      display: block;
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      color: #666;
+      font-size: 14px;
+    }
+     .mainCon .newsBox .news .tabCon .newest .firItem .newsRight .title {
+      position: relative;
+      height: 30px;
+      font-size: 18px;
+      color: #333;
+      font-weight: 500;
+    }
+     .mainCon .newsBox .news .tabCon .newest .firItem .newsRight .title .newsName {
+      display: block;
+      padding-right: 120px;
+      color: #333;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+     .mainCon .newsBox .news .tabCon .newest .firItem .newsRight .title .newsName:hover {
+      color: #3176eb;
+    }
+     .mainCon .newsBox .news .tabCon .newest .firItem .newsRight .title .date {
+      display: block;
+      font-size: 14px;
+      color: #999;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+     .mainCon .newsBox .news .tabCon .newest .firItem .newsRight p {
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 7;
+      line-height: 25px;
+      font-size: 15px;
+    }
+     .mainCon .newsBox .news .tabCon .newest .firItem .newsRight .num {
+      height: 30px;
+      line-height: 30px;
+      position: absolute;
+      right: 30px;
+      bottom: 20px;
+    }
+     .mainCon .newsBox .news .tabCon .newest .firItem .newsImg {
+      width: 345px;
+      height: 230px;
+      float: left;
+      overflow: hidden;
+    }
+     .mainCon .newsBox .news .tabCon .newest .firItem .newsImg img {
+      width: 100%;
+      display: block;
+    }
+     .mainCon .newsBox .news .list .item {
+      padding: 20px 0;
+      min-height: 105px;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+    }
+     .mainCon .newsBox .news .list .item .newsImg {
+      width: 140px;
+      height: 120px;
+      float: left;
+      margin-right: 10px;
+      overflow: hidden;
+    }
+     .mainCon .newsBox .news .list .item .newsImg img {
+      width: 100%;
+      display: block;
+    }
+     .mainCon .newsBox .news .list .item .newsRight {
+      width: 65%;
+      float: left;
+      margin-left: 10px;
+    }
+     .mainCon .newsBox .news .list .item .newsRight .title {
+      height: 30px;
+      font-size: 16px;
+      color: #333;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+     .mainCon .newsBox .news .list .item .newsRight .title:hover {
+      color: #3176eb;
+    }
+     .mainCon .newsBox .news .list .item .newsRight .text {
+      font-size: 14px;
+      line-height: 25px;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+     .mainCon .newsBox .news .list .item .newsRight .num {
+      height: 30px;
+      position: absolute;
+      right: 0;
+      bottom: 20px;
+      line-height: 30px;
+      float: right;
+      text-align: center;
+    }
+     .mainCon .newsBox .news .list .item .newsView {
+      position: absolute;
+      top: 10px;
+      right: 0;
+      padding-top: 40px;
+      padding-right: 20px;
+      box-sizing: border-box;
+    }
+     .mainCon .newsBox .news .list .item .newsView .view {
+      height: 30px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+     .mainCon .newsBox .news .list .item .newsView .view img {
+      vertical-align: middle;
+    }
+     .mainCon .newsBox .news .list .item .newsView .view span {
+      padding-right: 14px;
+      font-size: 14px;
+      vertical-align: middle;
+      border-right: 1px solid #ddd;
+    }
+     .mainCon .newsBox .news .list .item .newsView .view a {
+      margin-left: 6px;
+    }
+     .mainCon .newsBox .news .list .item .newsView .date {
+      height: 30px;
+      display: block;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+     .mainCon .newsBox .news .list .item:last-child {
+      border-bottom: none;
+    }
+     .mainCon .newsBox .news .list .pageBtn {
+      position: absolute;
+      left: 40%;
+      bottom: 20px;
+    }
+     .mainCon .newsBox .news .list .pageBtn li {
+      width: 26px;
+      height: 26px;
+      float: left;
+      margin-left: 5px;
+    }
+     .mainCon .newsBox .news .list .pageBtn li a {
+      display: block;
+      line-height: 26px;
+      color: #333;
+      text-align: center;
+    }
+     .mainCon .newsBox .news .list .pageBtn li:hover {
+      color: #6890e6;
+    }
+     .mainCon .newsBox .news .list .pageBtn li.active a {
+      color: #6890e6;
+    }
+     .mainCon .newsBox .case-list {
+      float: right;
+      width: 206px;
+      padding-top: 30px;
+    }
+     .mainCon .newsBox .case-list .case-item {
+      display: block;
+      width: 206px;
+      margin-bottom: 14px;
+    }
+     .mainCon .newsBox .case-list .case-item img {
+      display: block;
+      width: 100%;
+    }
+     .mainCon .newsBox .case-list .img {
+      width: 100%;
+      display: block;
+    }
+    .ellipsisNormal {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .paginator-container1 {
+      display: block;
+    }
+    #paginator-container2 {
+      display: none;
+    }
+  </style>
+  <div class="top">
+    <img class="top-bg" src="https://lxgw-1254182596.file.myqcloud.com/qianduan/5/6_1.png">
+    <div class="search-wra">
+      <form class=""  method="get" >
+        <div class="form-key">
+          <img class="search-img" src="https://lxgw-1254182596.file.myqcloud.com/qianduan/5/6_2.png" alt="">
+          <input type="text" class="form-input" name="title" placeholder="输入您想了解的关键词" value="{{ app.request.get('title') }}">
+        </div>
+        <button class="form-btn" style="background: none" type="submit" id="form-btn">搜索</button>
+      </form>
+
+
+    </div>
+  </div>
+  <div class="mainCon">
+    <div class="newsBox">
+
+      <!-- 左侧新闻列表 -->
+      <div class="news">
+        <!-- 最新新闻 -->
+        <div class="tabCon newsCon">
+          <!-- 新闻列表 -->
+          <div style="padding-bottom: 80px; position: relative;">
+            <div id="newsCon" class="list">
+              {% for new in news %}
+                <div class="item">
+                  <div class="newsImg">
+                    <img src="{{ asset(new.icon) }}" alt="{{new.title}}">
+                  </div>
+                  <div class="newsRight">
+                    <div class="title"><a href="{{ path('homepage_new_show', {id:new.id}) }}">{{new.title}}</a></div>
+                    <p class="text">{{new.content|plain_text(250)}}</p>
+                  </div>
+
+                  <div class="newsView">
+                    <div class="view">
+                      <img style="margin-right: 2px;width: 12px" src="/images/watch.png" alt="{{new.title}}" />{{ new.watch }}
+                      <a href="{{ path('homepage_new_show', {id:new.id}) }}"><img src="https://lxgw-1254182596.file.myqcloud.com/qianduan/5/5_13.png"></a>
+                    </div>
+                    <span class="date">{{ new.createdTime|date('Y-m-d') }}</span>
+                  </div>
+                </div>
+                {% else %}
+                  <div class="item" style="text-align: center;padding: 20px 0px">
+                   暂无数据！！
+                  </div>
+              {% endfor %}
+            </div>
+            <nav class="text-center">
+              {{ admin_macro.paginator(paginator) }}
+            </nav>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+{% endblock %}

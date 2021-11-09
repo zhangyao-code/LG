@@ -8,6 +8,7 @@ use AppBundle\Common\Paginator;
 use AppBundle\Controller\AdminV2\BaseController;
 use Biz\Content\Service\FileService;
 use Biz\Content\Service\NavigationService;
+use Biz\MessageBoard\Service\BoardService;
 use Biz\News\Service\Impl\NewsServiceImpl;
 use Biz\System\Service\SettingService;
 use Codeages\Biz\Framework\Service\Exception\NotFoundException;
@@ -15,6 +16,29 @@ use Symfony\Component\HttpFoundation\Request;
 
 class NewsController extends BaseController
 {
+
+    public function messageBoardAction(Request $request)
+    {
+        $paginator = new Paginator(
+            $this->get('request'),
+            $this->getBoardService()->countBoard(array()),
+            20
+        );
+
+        $datas = $this->getBoardService()->searchBoard(
+            array(),
+            array('createdTime' => 'DESC'),
+            $paginator->getOffsetCount(),
+            $paginator->getPerPageCount()
+        );
+
+        return $this->render('admin-v2/board/index.html.twig', array(
+            'datas' => $datas,
+            'paginator' => $paginator,
+        ));
+
+    }
+
     public function indexAction(Request $request)
     {
         $paginator = new Paginator(
@@ -94,6 +118,14 @@ class NewsController extends BaseController
     protected function getNewsService()
     {
         return $this->createService('News:NewsService');
+    }
+
+    /**
+     * @return BoardService
+     */
+    protected function getBoardService()
+    {
+        return $this->createService('MessageBoard:BoardService');
     }
 
 }

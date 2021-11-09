@@ -170,7 +170,7 @@
     <h3 style="text-align: center">模块设置</h3><p style="text-align: center">(点击文案和图片即可修改,蓝底图建议100*68，灰底建议90*62)</p>
     <div class="part soluteList" style="height: 1500px">
       <div style="text-align: center">
-        <input class="title" name="solute[title]" style="width: 900px" value="{{ setting.solute.soluteListTitle|default('全球领先的二维码追溯解决方案') }}"/>
+        <input class="title" name="solute[title]" style="width: 900px" value="{{ setting.solute.title|default('全球领先的二维码追溯解决方案') }}"/>
       </div>
       {% for i in 1..4 %}
         {% include 'admin-v2/homepage/soluteList.html.twig' with {index:'soluteList'~loop.index, solute:setting} %}
@@ -239,7 +239,7 @@
       </a>
     </div>
     <div class="detail-abp" >
-      <textarea class=""  rows="13" name="detail[content]">{{ setting.detail.content|default('输入公司简介！') }}</textarea>
+      <textarea class=""  rows="13" name="detail[content]">{{ setting.detail.content|default('输入公司简介！')|raw }}</textarea>
     </div>
   </div>
 

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> {{ setting('site.name', '创逸科技') }}</title>
+  <meta name="keywords" content="{{ setting('site.seo_keywords') }}">
+  <meta name="description" content="{{ setting('site.seo_description') }}">
+  <link rel="icon" href="/favicon.ico">
+  <link href="/css/base.css" rel="stylesheet" />
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+  <script src="/js/header.js"></script>
+  <script src="/js/backTop.js"></script>
+  {{ setting('site.analytics')|raw }}
+
+
+</head>
+<body>
+<div id="container">
+  <!-- 头部 -->
+  {% include 'homepage/header.html.twig' %}
+  {% block homepage_content %}
+
+    <link href="/css/newBridge.css" rel="stylesheet" />
+    <style>
+      .hidden{
+        display: none !important;
+      }
+      .show {
+        display: unset !important;
+      }
+      .nb-success-box{
+        width: 120px;
+        position: relative !important;
+        top: 50%;
+        left: 50%;
+        margin-left: -60px;
+        margin-top: -20px!important;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+    <ins id="newBridge">
+      <ins class="nb-nodeboard-base nb-nodeboard-position-base nb-nodeboard-left-bottom nb-show" style="width: 400px;left: 35%;bottom:25%" id="nb_nodeboard">
+        <ins class="nb-nodeboard-contain-base nb-nodeboard-contain">
+          <ins id="js-hidden" >
+            <ins class="nb-nodeboard-top nb-nodeboard-top-0 js-hidden" style="background-color: transparent;">
+              <ins class="nb-head-title">留言板</ins>
+            </ins>
+            <ins id="nb_nodeboard_text" class="nb-nodeboard-text">
+              <p class="nb-nodeboard-company"></p>
+              <p class="nb-nodeboard-link"></p>
+            </ins>
+            <form id="nb_nodeboard_form" autocomplete="off" class="nb-board-form" action="{{ path('message_board_post') }}" method="post" accept-charset="utf-8">
+              <ins id="nb_nodeboard_set" class="nb-nodeboard-set">
+                <ins class="nb-nodeboard-content">
+                  <textarea id="nb-nodeboard-set-content-js" name="content" required placeholder="请在此输入留言内容，我们会尽快与您联系。（必填）" class="nb-nodeboard-set-content nb-nodeboard-param"></textarea>
+                </ins>
+                <ins class="nb-nodeboard-name nb-nodeboard-ext-input" style="z-index:4;">
+                  <ins class="nb-nodeboard-icon nodeExt"></ins>
+                  <input id="nb_nodeboard_ext_4" name="userName" class="nb-nodeboard-input nb-nodeboard-param" required maxlength="50" type="text" placeholder="个人姓名（必填）"></ins>
+                <ins class="nb-nodeboard-name nb-nodeboard-ext-input" style="z-index:3;">
+                  <ins class="nb-nodeboard-icon nodeExt"></ins>
+                  <input id="nb_nodeboard_ext_3" name="company" class="nb-nodeboard-input nb-nodeboard-param" required maxlength="50" type="text" placeholder="公司名称（必填）">
+                </ins>
+                <ins class="nb-nodeboard-name nb-nodeboard-ext-input" style="z-index:2;">
+                  <ins class="nb-nodeboard-icon nodeExt"></ins>
+                  <input id="nb_nodeboard_ext_2" name="mobile" class="nb-nodeboard-input nb-nodeboard-param" required maxlength="50" type="text"  placeholder="联系方式（必填）">
+                </ins>
+                <ins class="nb-nodeboard-name nb-nodeboard-ext-input" style="z-index:1;"><ins class="nb-nodeboard-icon nodeExt"></ins>
+                  <input id="nb_nodeboard_ext_1" name="email" class="nb-nodeboard-input nb-nodeboard-param" maxlength="50" type="text" placeholder="电子邮箱">
+                </ins>
+                <input type="hidden" name="_lg_token" value="{{ csrf_token('site') }}">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('site') }}">
+              </ins>
+            </form>
+            <div class="nb-nodeboard-success" id="nb_nodeboard_success">
+              <ins class="nb-success-box">
+                <ins class="nb-success-icon"></ins>
+                <ins class="nb-success-title" id="nb_node_messagetitle">感谢留言</ins>
+                <ins class="nb-success-content" id="nb_node_messagecontent">我们会尽快与您联系</ins>
+                <ins id="nb_nodeboard_return" needverifycode="1" class="nb-sucess-close">关闭</ins>
+                <ins class="" style="height: 40px"></ins>
+              </ins>
+            </div>
+            <ins class="nb-nodeboard-send" id="nb_node_contain">
+              <ins id="nb_nodeboard_send" needverifycode="1" class="nb-nodeboard-send-btn nb-nodeboard-send-btn-0">发送</ins>
+            </ins>
+          </ins>
+        </ins>
+      </ins>
+    </ins>
+    <script src="{{ asset('static-dist/libs/jquery-validation/dist/jquery.validate.js') }}"></script>
+    <script>
+
+      $('#nb_nodeboard_return').on('click',function (event){
+        window.location.href = '/';
+      });
+
+      let $from = $('#nb_nodeboard_form');
+      let  $validator = $from.validate({
+        rules: {
+          'content': 'required',
+          'userName': 'required',
+          'company':  'required',
+          'mobile': 'required',
+        },
+        messages: {
+          'content': '请输入留言内容',
+          'userName': '请输入姓名',
+          'company':  '请输入公司名称',
+          'mobile':  '请输入联系方式',
+        }
+      });
+      $('#nb_nodeboard_send').on('click',function (event){
+        if (!$validator || !$validator.form()) {
+          return;
+        }
+        $.post($from.attr('action'), $from.serialize(), function (result) {
+          $('#nb_nodeboard_success').addClass('show');
+          $('#nb_node_contain').addClass('hidden');
+          $('#nb_nodeboard_form').addClass('hidden');
+        }, 'json');
+      });
+    </script>
+  {% endblock %}
+  <!-- 侧边栏 -->
+  {% include 'homepage/right-bar.html.twig' %}
+</div>
+
+</body>
+</html>

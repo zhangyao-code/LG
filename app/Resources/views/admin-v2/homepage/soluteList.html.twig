@@ -92,18 +92,18 @@
       <div class="list-content">
         <div class="item">
           <div>
-            <input name="{{ index }}[md_2]" class="mdm" value="专业赋码">
+            <input name="{{ index }}[md_2]" class="mdm" value="{{ solute[index].md_2|default('子模块2标题') }}">
           </div>
           <div>
-            <textarea class="english mdsm" name="{{ index }}[mds_2]">二维码赋码检测一体化，确保每一个二维码100%可读</textarea>
+            <textarea class="english mdsm" name="{{ index }}[mds_2]">{{ solute[index].mds_2|default('二维码赋码检测一体化，确保每一个二维码100%可读') }}</textarea>
           </div>
         </div>
         <div class="item">
           <div>
-            <input name="{{ index }}[md_3]" class="mdm" value="{{ solute[index].md_3|default('子模块2标题') }}">
+            <input name="{{ index }}[md_3]" class="mdm" value="{{ solute[index].md_3|default('子模块3标题') }}">
           </div>
           <div>
-            <textarea class="english mdsm" name="{{ index }}[mds_3]">{{ solute[index].mds_3|default('子模块2标题') }}</textarea>
+            <textarea class="english mdsm" name="{{ index }}[mds_3]">{{ solute[index].mds_3|default('子模块3标题') }}</textarea>
           </div>
         </div>
         <div class="item">

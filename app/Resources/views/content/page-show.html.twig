@@ -1,17 +1,41 @@
-{% extends 'layout.html.twig' %}
+<!DOCTYPE html>
+<html>
+<head>
 
-{% block title %}{{ content.title }} - {{ parent() }}{% endblock %}
-{% block keywords %}{{ content.title }} {{ setting('site.name') }}{% endblock %}
-{% block description %}{{ content.body|plain_text(100) }}{% endblock %}
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> {{ setting('site.name', '创逸科技') }}</title>
+  <meta name="keywords" content="{{ setting('site.seo_keywords') }}">
+  <meta name="description" content="{{ setting('site.seo_description') }}">
+  <link rel="icon" href="/favicon.ico">
+  <link href="/css/base.css" rel="stylesheet" />
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+  <script src="/js/header.js"></script>
+  <script src="/js/backTop.js"></script>
+  {{ setting('site.analytics')|raw }}
 
-{% set siteNav = 'page/' ~ content.alias|default(content.id) %}
 
-{% set bodyClass = 'custompage' %}
-{% block content %}
-  {% if content.body %}
-  	  {{ content.body|cdn|raw }}
-  {% else %}
-    <div class="empty">{{'custom_page.empty'|trans}}</div>
-  {% endif %}
+</head>
+<body>
+<div id="container">
+  <!-- 头部 -->
+  {% include 'homepage/header.html.twig' %}
+  {% block homepage_content %}
+    {% if content.body %}
+      {{ content.body|cdn|raw }}
+    {% else %}
+      <div class="empty">{{'custom_page.empty'|trans}}</div>
+    {% endif %}
+  {% endblock %}
+  <!-- 侧边栏 -->
   {% include 'homepage/right-bar.html.twig' %}
+  <!-- 底部 -->
+  {% include 'default/footer.html.twig' %}
+</div>
+{% block homepage_script %}
+
 {% endblock %}
+
+</body>
+</html>

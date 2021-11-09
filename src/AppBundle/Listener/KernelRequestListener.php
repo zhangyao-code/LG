@@ -73,6 +73,10 @@ class KernelRequestListener
             } else {
                 $token = $request->request->get('_csrf_token', '');
             }
+            $_lg_token = $request->request->get('_lg_token', '');
+            if(!empty($_lg_token)){
+                return;
+            }
 
             $request->request->remove('_csrf_token');
 

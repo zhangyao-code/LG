@@ -2,21 +2,10 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Common\ArrayToolkit;
+use AppBundle\Common\Paginator;
 use Biz\News\Service\Impl\NewsServiceImpl;
-use Biz\Task\Service\TaskService;
-use Biz\Theme\Service\ThemeService;
-use Biz\Content\Service\BlockService;
-use Biz\Course\Service\CourseService;
-use Biz\CloudPlatform\CloudAPIFactory;
-use Biz\System\Service\SettingService;
-use Biz\Course\Service\CourseSetService;
-use Biz\CloudPlatform\Service\AppService;
-use Biz\Taxonomy\Service\CategoryService;
-use Biz\Content\Service\NavigationService;
-use Biz\Classroom\Service\ClassroomService;
+use Codeages\Biz\Framework\Service\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\Request;
-use Biz\User\Service\BatchNotificationService;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends BaseController
@@ -29,12 +18,51 @@ class DefaultController extends BaseController
         ));
     }
 
+
+    public function messageBoardAction(Request $request)
+    {
+//        $data = $request->request->all();
+//        $data['ip'] = $request->getClientIp();
+//        $this->createService('MessageBoard:BoardService')->createBoard($data);
+        return $this->render('board/index.html.twig', array(
+
+        ));
+    }
+
+    public function messagePostAction(Request $request)
+    {
+        $data = $request->request->all();
+        $data['ip'] = $request->getClientIp();
+        $this->createService('MessageBoard:BoardService')->createBoard($data);
+        return $this->createJsonResponse(true);
+    }
+
     public function newsAction(Request $request, $id)
     {
         $new = $this->getNewsService()->getNews($id);
         $new = $this->getNewsService()->updateNews($id, array('watch'=>$new['watch']+1));
         return $this->render('homepage/new-show.html.twig', array(
             'new'=> $new
+        ));
+    }
+
+    public function newsListAction(Request $request)
+    {
+        $paginator = new Paginator(
+            $request,
+            $this->getNewsService()->countNews(array('title'=>$request->query->get('title', ''))),
+            10
+        );
+        $news = $this->getNewsService()->searchNews(
+            array('title'=>$request->query->get('title', '')),
+            array('createdTime'=>'desc'),
+            $paginator->getOffsetCount(),
+            $paginator->getPerPageCount()
+        );
+
+        return $this->render('homepage/news-list.html.twig', array(
+            'news' => $news,
+            'paginator' => $paginator,
         ));
     }
 

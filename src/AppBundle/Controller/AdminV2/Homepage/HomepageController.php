@@ -53,7 +53,11 @@ class HomepageController extends BaseController
     {
         if($request->getMethod() == 'POST') {
             $data = $request->request->all();
+            if($data['detail']){
+                $data['detail']['content'] = str_replace(" " , "&nbsp;" , $data['detail']['content']);
+            }
             $this->getSettingService()->set('homepage_swiper', $data);
+
             return $this->createJsonResponse(true);
         }
         return $this->render('admin-v2/homepage/swiper.html.twig', array(

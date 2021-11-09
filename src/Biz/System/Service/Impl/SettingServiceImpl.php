@@ -76,7 +76,6 @@ class SettingServiceImpl extends BaseService implements SettingService
                 $this->getCacheService()->set(self::CACHE_NAME, $this->cached);
             }
         }
-
         $namespace = $this->getNameSpace();
         $defaultSet = isset($this->cached[self::NAME_SPACE_DEFAULT.'-'.$name]) ? unserialize($this->cached[self::NAME_SPACE_DEFAULT.'-'.$name]) : $default;
         $orgSet = isset($this->cached[$namespace.'-'.$name]) ? unserialize($this->cached[$namespace.'-'.$name]) : $default;

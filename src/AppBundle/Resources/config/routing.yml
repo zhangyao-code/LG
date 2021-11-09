@@ -3145,3 +3145,14 @@ homepage_new_show:
     path: /news/{id}
     defaults: { _controller: AppBundle:Default:news }
 
+homepage_new_list:
+    path: /news
+    defaults: { _controller: AppBundle:Default:newsList }
+
+message_board_post:
+    path: /board/save
+    defaults: { _controller: AppBundle:Default:messagePost }
+
+message_board:
+    path: /message_board
+    defaults: { _controller: AppBundle:Default:messageBoard }

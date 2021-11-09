@@ -1890,3 +1890,7 @@ admin_v2_news_show_setting:
 admin_v2_homepage_swiper_upload:
     path: /homepage/image/upload
     defaults: { _controller: AppBundle:AdminV2/Homepage/Homepage:upload }
+
+admin_v2_message_board:
+    path: /message_board
+    defaults: { _controller: AppBundle:AdminV2/Homepage/News:messageBoard }

@@ -77,5 +77,6 @@ security:
         - { path: ^/admin/upgrade, role: ROLE_BACKEND }
         - { path: ^/admin/optimize, role: ROLE_BACKEND }
         - { path: ^/admin, role: ROLE_BACKEND }
+        - { path: ^/board/save, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
         #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
